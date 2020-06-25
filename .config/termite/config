@@ -1,0 +1,43 @@
+[options]
+font = Liberation Mono Bold 12
+cursor_shape = ibeam
+
+[colors]
+
+# special
+foreground      = #e4e2e4
+foreground_bold = #e4e2e4
+cursor          = #e4e2e4
+background      = rgba(0,0,0,0.8)
+
+# black
+color0  = #444343
+color8  = #baac5e
+
+# red
+color1  = #ec2222
+color9  = #3d9092
+
+# green
+color2  = #3ae02b
+color10 = #ee482a
+
+# yellow
+color3  = #ac2be0
+color11 = #e25ad0
+
+# blue
+color4  = #615a5f
+color12 = #ec54d9
+
+# magenta
+color5  = #897f87
+color13 = #bcac4b
+
+# cyan
+color6  = #b4adb3
+color14 = #6ebabd
+
+# white
+color7  = #e4e2e4
+color15 = #7a97e0
