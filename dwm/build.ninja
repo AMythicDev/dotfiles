@@ -1,0 +1,41 @@
+# Copyright (c) 2020 Arijit Dey<arijid79@gmail.com>
+
+#=============== Variable Declarations =========================
+# Installation directory
+prefix = /usr/local/
+
+# Flags for building object code (.o) files
+cflags = -std=c99 -pedantic -Wall -Wno-deprecated-declarations -Os -I/usr/X11R6/include -I/usr/include/freetype2 -D_DEFAULT_SOURCE -D_BSD_SOURCE -D_POSIX_C_SOURCE=200809L -DVERSION=\"6.2\" -DXINERAMA
+
+# Flags for linking object code
+ldflags = -L/usr/X11R6/lib -lX11 -lXinerama -lfontconfig -lXft
+
+#=============== Rules ========================================
+rule build
+ command = cc -c $cflags $in
+ description = Building $in to $out
+
+rule link
+ command = cc -o $out $in $ldflags
+ description = Linking executable $out
+
+rule install 
+ command = cp -f dwm $prefix/bin/;$
+		chmod 755 $prefix/bin/dwm;$
+		cp -f dwm.1 $prefix/share/man/man1/;$
+		chmod 644 $prefix/share/man/man1/dwm.1;
+ description = Copy files and setting premissions
+
+#=============== Build targets =======================
+build drw.o: build drw.c
+build dwm.o: build dwm.c | config.h
+build util.o: build util.c
+build dwm: link drw.o dwm.o util.o
+build $prefix/bin/dwm $prefix/share/man/man1/dwm.1: install | dwm
+
+#================== Renaming build targets with phony ===================
+build install: phony $prefix/bin/dwm $prefix/share/man/man1/dwm.1
+build all: phony dwm
+
+#================== Default Rule ===========================
+default all
