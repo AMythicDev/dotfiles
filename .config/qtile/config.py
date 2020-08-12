@@ -51,7 +51,7 @@ keys = [
     Key([mod], "n", lazy.layout.normalize()),
 
     # Launch termite
-    Key([mod], "Return", lazy.spawn("termite")),
+    Key([mod], "Return", lazy.spawn("kitty")),
     # Toggle between different layouts with space
     # Kill Window
     Key([mod], "space", lazy.next_layout()),
@@ -61,7 +61,7 @@ keys = [
     Key([mod, "control"], "r", lazy.restart()),
     Key([mod, "control"], "q", lazy.shutdown()),
     # Rofi
-    Key([mod], "r", lazy.spawn(f"{home_dir}/bin/launcher.sh")),
+    Key([mod], "r", lazy.spawn(f"rofi -show drun -show-icons")),
     # MPD
     Key([mod, "control"], "p", lazy.spawn("mpc toggle")),
     Key([mod, "control"], "s", lazy.spawn("mpc stop")),
@@ -83,6 +83,7 @@ for i in groups:
 layouts = [
     layout.Bsp(border_width=0, margin=5),
     layout.Max(),
+    layout.Floating(),
 ]
 
 widget_defaults = dict(
@@ -93,9 +94,14 @@ widget_defaults = dict(
 extension_defaults = widget_defaults.copy()
 
 # Autostart
-@hook.subscribe.startup
+@hook.subscribe.startup_once
 def start_once():
+    sb.call([f"{home_dir}/.config/qtile/autostart_once"])
+
+@hook.subscribe.startup
+def start():
     sb.call([f"{home_dir}/.config/qtile/autostart"])
+
 
 COLORS = ["#ee4fa8", # Primary Color
           "#001443", # Secondary Color
@@ -106,17 +112,17 @@ screens = [
     Screen(
         top=bar.Bar(
             [
-                widget.GroupBox(this_current_screen_border=COLORS[0], highlight_method="block",
-				active="#FFFFFF", inactive="#9c9d9e"),
+        widget.GroupBox(this_current_screen_border=COLORS[0],
+            highlight_method="block", active="#FFFFFF", inactive="#9c9d9e"),
 		widget.TaskList(border=COLORS[0], highlight_method="block"),
                 widget.Systray(),
 		widget.PulseVolume(background=COLORS[1], padding=10),
 		widget.CheckUpdates(colour_have_updates="ff0000", colour_no_updates="0000ff", background=COLORS[0], padding=10),
-                widget.Clock(format='%I:%M %p', background=COLORS[1], padding=10),
-            ],
-            24,
-	background=COLORS[2]
-        ),
+        widget.Clock(format='%I:%M %p', background=COLORS[1], padding=10),
+        widget.Mpd2(background=COLORS[0], status_format="{play_status}"),
+        ],
+        24,
+	    background=COLORS[2]),
     ),
 ]
 

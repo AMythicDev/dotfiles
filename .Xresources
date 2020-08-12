@@ -4,4 +4,4 @@
 rofi.color-normal: #222222,#ffffff,#222222,#ee4fa8,#ffffff
 !                  'background', 'border', 'separator'
 rofi.color-window: #222222,      #222222,  #222222
-
+rofi.display-drun: Search
