@@ -1,0 +1,31 @@
+#entry:selected {
+  background: #fd9dfe;
+  font-weight: bold;
+}
+
+#entry {
+  color: white;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+#outer-box {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+#window {
+  background: rgba(0, 0, 0, 0.3);
+  border: 5px solid #fd9dfe;
+
+}
+
+#input:focus {
+  border: 2px solid #fd9dfe;
+}
+
+#input {
+  font-weight: bold;
+  color: white;
+  background: rgba(0, 0, 0, 0.3);
+  border: none;
+  border-bottom: 2px solid white;
+}
