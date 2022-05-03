@@ -1,17 +1,30 @@
-# Set modifier key to mod4
+# Variables
+# Set variables that will be used through out the config
+# - Set modifier key to mod4
+
 set $mod mod4
-# Map h, j, k, and l to left, down, up and right variables
+
+
+# - Map h, j, k, and l to left, down, up and right variables
+
 set $left h
 set $down j
 set $up k
 set $right l
 
-# Variables for various programs
+
+# - Variables for various programs
+
 set $term kitty
 set $menu wofi --show drun
+set $wallpaper /home/arijit/Downloads/wallpaper.jpg
 
-# Set the default wallpaper
-output * bg /home/arijit/Downloads/wallpaper.jpg fill
+# Output Configuration
+# This is for any configuration related to display like multi-monitors, wallpapers, swayidle etc
+
+output * bg $wallpaper fill
+
+# Application Launching
 
 # Start a terminal
 bindsym $mod+Return exec $term
@@ -24,12 +37,24 @@ bindsym $mod+e exec emacsclient -c -n
 # Screenshot using grim
 bindsym F11 exec grim
 
+# Floating
+# The =floating_modifier= declares the key to switch to floating mode operation like resizing and moving.
+# This is set to the $mod key. A =normal=/=inverse= is also passed to set the mouse configration to use
+# - =normal= means to use the left mouse button for moving windows and right button for resizing
+# - =inverse= menas to use the right mouse button for moving windows and left button for resize
+
+# The =$mod+Shift+space= will toggle between tiling and floating mode for the currently focused window
+# while =$mod+space= toggles between tiling and floating mode for the current workspace
+
+
 floating_modifier $mod normal
 # Toggle the current focus between tiling and floating mode
 bindsym $mod+Shift+space floating toggle
 
 # Swap focus between the tiling area and the floating area
 bindsym $mod+space focus mode_toggle
+
+# Layout
 
 # You can "split" the current object of your focus with
 # $mod+b or $mod+v, for horizontal and vertical splits
@@ -48,16 +73,16 @@ bindsym $mod+f fullscreen
 # Move focus to the parent container
 bindsym $mod+a focus parent
 
+# Session
+
 # Reload sway
 bindsym $mod+Control+r reload
 # Exit sway (logs you out of your Wayland session)
 bindsym $mod+Control+q exec wlogout
 
-#
-# Scratchpad:
-#
-    # Sway has a "scratchpad", which is a bag of holding for windows.
-    # You can send windows there and get them back later.
+# Scratchpad
+# Sway has a "scratchpad", which is a bag of holding for windows.
+# You can send windows there and get them back later.
 
     # Move the currently focused window to the scratchpad
     bindsym $mod+Shift+minus move scratchpad
@@ -65,6 +90,8 @@ bindsym $mod+Control+q exec wlogout
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
     bindsym $mod+minus scratchpad show
+
+# Window Movement
 
 # Move your focus around
 bindsym $mod+$left focus left
@@ -77,6 +104,8 @@ bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
+# Window Management
+
 # Move the focused window with the same, but add Shift
 bindsym $mod+Shift+$left move left
 bindsym $mod+Shift+$down move down
@@ -87,6 +116,8 @@ bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
+
+# Switching
 
 bindsym $mod+1 workspace number 1
 bindsym $mod+2 workspace number 2
@@ -99,6 +130,8 @@ bindsym $mod+8 workspace number 8
 bindsym $mod+9 workspace number 9
 bindsym $mod+0 workspace number 10
 
+# Window Shifting
+
 bindsym $mod+Shift+1 move container to workspace number 1
 bindsym $mod+Shift+2 move container to workspace number 2
 bindsym $mod+Shift+3 move container to workspace number 3
@@ -110,7 +143,11 @@ bindsym $mod+Shift+8 move container to workspace number 8
 bindsym $mod+Shift+9 move container to workspace number 9
 bindsym $mod+Shift+0 move container to workspace number 10
 
+# Mode Switching
+
 bindsym $mod+Shift+r mode "resize"
+
+# resize
 
 mode "resize" {
 # left will shrink the containers width
@@ -133,12 +170,16 @@ bindsym Return mode "default"
 bindsym Escape mode "default"
 }
 
+# Autostart
+
 # Status Bar:and network manager
 exec waybar &
 # exec nm-applet --indicator &
 # exec syncthing serve --no-browser &
 # exec emacs daemon
 exec emacs --daemon &
+
+# GTK Config
 
 set $gnome-schema org.gnome.desktop.interface
 
@@ -149,9 +190,14 @@ exec_always {
     gsettings set $gnome-schema cursor-theme 'DMZ'
 }
 
+# Additional Configuration
+
 # hide titlebars and add gaps
 default_border pixel 2
 gaps outer 3
 gaps inner 5
+
+# Default Import (DO NOT MODIFY)
+# *Don't forget to include the default sway configration*
 
 include /etc/sway/config.d/*

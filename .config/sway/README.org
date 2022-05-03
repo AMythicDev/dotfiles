@@ -1,26 +1,30 @@
 #+TITLE: Config
-#+PROPERTY: header-args :tangle config
+#+PROPERTY: header-args :tangle config :comments both :padline no
 
 * Variables
 Set variables that will be used through out the config
+- Set modifier key to mod4
 #+begin_src conf
-# Set modifier key to mod4
 set $mod mod4
-# Map h, j, k, and l to left, down, up and right variables
+#+end_src
+- Map h, j, k, and l to left, down, up and right variables
+#+begin_src conf
 set $left h
 set $down j
 set $up k
 set $right l
-
-# Variables for various programs
+#+end_src
+- Variables for various programs
+#+begin_src conf
 set $term kitty
 set $menu wofi --show drun
+set $wallpaper /home/arijit/Downloads/wallpaper.jpg
 #+end_src
+
 * Output Configuration
 This is for any configuration related to display like multi-monitors, wallpapers, swayidle etc
 #+begin_src conf
-# Set the default wallpaper
-output * bg /home/arijit/Downloads/wallpaper.jpg fill
+output * bg $wallpaper fill
 #+end_src
 * Key Bindings
 Maps the various key bindings
@@ -81,13 +85,9 @@ bindsym $mod+Control+r reload
 bindsym $mod+Control+q exec wlogout
 #+end_src
 ** Scratchpad
+Sway has a "scratchpad", which is a bag of holding for windows.
+You can send windows there and get them back later.
 #+begin_src conf
-#
-# Scratchpad:
-#
-    # Sway has a "scratchpad", which is a bag of holding for windows.
-    # You can send windows there and get them back later.
-
     # Move the currently focused window to the scratchpad
     bindsym $mod+Shift+minus move scratchpad
 
@@ -95,6 +95,7 @@ bindsym $mod+Control+q exec wlogout
     # If there are multiple scratchpad windows, this command cycles through them.
     bindsym $mod+minus scratchpad show
 #+end_src
+
 ** Window Movement
 #+begin_src conf
 # Move your focus around
