@@ -1,40 +1,17 @@
-# Copyright (c) 2010 Aldo Cortesi
-# Copyright (c) 2010, 2014 dequis
-# Copyright (c) 2012 Randall Ma
-# Copyright (c) 2012-2014 Tycho Andersen
-# Copyright (c) 2012 Craig Barnes
-# Copyright (c) 2013 horsik
-# Copyright (c) 2013 Tao Sauvage
-#
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-#
-# The above copyright notice and this permission notice shall be included in
-# all copies or substantial portions of the Software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE.
-
-from libqtile.config import Key, Screen, Group, Drag, Click
-from libqtile.lazy import lazy
-from libqtile import layout, bar, widget, hook
 import os
 import subprocess as sb
+
+from libqtile import bar, hook, layout, widget
+from libqtile.config import Click, Drag, Group, Key, Screen
+from libqtile.lazy import lazy
 
 home_dir = os.path.expanduser("~")
 
 from typing import List  # noqa: F401
 
 mod = "mod4"
+term = "kitty"
+config = f"{home_dir}/.config/qtile/config.py"
 
 keys = [
     # Switch between windows in current layout
@@ -51,7 +28,7 @@ keys = [
     Key([mod], "n", lazy.layout.normalize()),
 
     # Launch termite
-    Key([mod], "Return", lazy.spawn("kitty")),
+    Key([mod], "Return", lazy.spawn(term)),
     # Toggle between different layouts with space
     # Kill Window
     Key([mod], "space", lazy.next_layout()),
@@ -69,6 +46,13 @@ keys = [
     Key([mod, "control"], "d", lazy.spawn("mpc volume -5")),
     Key([mod, "control"], "n", lazy.spawn("mpc next")),
     Key([mod, "control", "shift"], "p", lazy.spawn("mpc prev")),
+
+    # Make window fullscreen
+    Key([mod, "control"], "f", lazy.window.toggle_fullscreen()),
+
+    # Shortcuts for opening programs
+    Key([mod, "shift"], "b", lazy.spawn("brave-browser-nightly")),
+    Key([mod, "shift"], "f", lazy.spawn("firefox")),
 ]
 
 groups = [Group(i, layout="bsp") for i in "123456789"]
@@ -88,7 +72,7 @@ layouts = [
 
 widget_defaults = dict(
     font='Droid Sans Bold',
-    fontsize=12,
+    fontsize=10,
     padding=5,
 )
 extension_defaults = widget_defaults.copy()
@@ -117,11 +101,12 @@ screens = [
 		widget.TaskList(border=COLORS[0], highlight_method="block"),
                 widget.Systray(),
 		widget.PulseVolume(background=COLORS[1], padding=10),
-		widget.CheckUpdates(colour_have_updates="ff0000", colour_no_updates="0000ff", background=COLORS[0], padding=10),
+		widget.CheckUpdates(colour_have_updates="ff0000", colour_no_updates="0000ff",
+                    background=COLORS[0], padding=10),
         widget.Clock(format='%I:%M %p', background=COLORS[1], padding=10),
-        widget.Mpd2(background=COLORS[0], status_format="{play_status}"),
+        widget.Mpd2(background=COLORS[0], status_format="MPD: {play_status}"),
         ],
-        24,
+        20,
 	    background=COLORS[2]),
     ),
 ]

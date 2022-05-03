@@ -1,5 +1,3 @@
 #!/bin/bash
 
-~/bin/random-wall
-nm-applet &
-picom &
+nm-applet --indicator &
