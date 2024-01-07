@@ -1,0 +1,28 @@
+#entry:selected {
+  background: #f5c2e7;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+#entry {
+  color: #cdd6f4;
+  padding: 5px;
+}
+
+#outer-box {
+  background: #1e1e2e;
+  border: 5px solid #313244;
+}
+
+#input {
+  font-weight: bold;
+  color: white;
+  border: none;
+  background: #1e1e2e;
+  border-bottom: 2px solid #585b70;
+}
+
+#input:focus {
+  border: 2px solid #f5c2e7;
+  outline: none;
+}

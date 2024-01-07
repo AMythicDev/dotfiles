@@ -1,0 +1,17 @@
+[cmd_duration]
+disabled = true
+
+[hostname]
+disabled = false
+ssh_only = true
+
+[package]
+disabled = true
+
+[username]
+disabled = false
+show_always = true
+style_user = "bold bright-purple"
+
+[rust]
+style = "#b87639"
