@@ -1,10 +1,15 @@
 local lspconfig = require('lspconfig')
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
--- IMPORTANT: make sure to setup neodev BEFORE lspconfig
-require("neodev").setup({
-  -- add any options here, or leave empty to use the default settings
-})
+capabilities.textDocument.foldingRange = {
+  dynamicRegistration = false,
+  lineFoldingOnly = true
+}
+
+require("neodev").setup()
+require "mason".setup()
+require "mason-lspconfig".setup()
+require "ufo".setup()
 
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   group = vim.api.nvim_create_augroup("Ad/LSPFormat", { clear = true }),
@@ -33,33 +38,47 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
   end
 })
 
-lspconfig.rust_analyzer.setup {
-  capabilities = capabilities,
+require "mason-lspconfig".setup_handlers({
+  function(server_name)
+    lspconfig[server_name].setup({
+      capabilities = capabilities,
+    })
+  end,
 
-  settings = {
-    ["rust-analyzer"] = {
-      cargo = {
-        features = "all",
+  ["rust_analyzer"] = function()
+    lspconfig.rust_analyzer.setup {
+      capabilities = capabilities,
+
+      settings = {
+        ["rust-analyzer"] = {
+          cargo = {
+            features = "all",
+          }
+        }
       }
     }
-  }
-}
+  end,
 
-lspconfig.lua_ls.setup {
-  capabilities = capabilities,
+  ["lua_ls"] = function()
+    lspconfig.lua_ls.setup {
+      capabilities = capabilities,
 
-  settings = {
-    Lua = {
-      diagnostics = {
-        globals = { "vim" },
-      },
-      completion = {
-        callSnippet = "Replace"
+      settings = {
+        Lua = {
+          diagnostics = {
+            globals = { "vim" },
+          },
+          completion = {
+            callSnippet = "Replace"
+          }
+        }
       }
     }
-  }
-}
+  end,
 
-lspconfig.zls.setup {
-  capabilities = capabilities,
-}
+  ["zls"] = function()
+    lspconfig.zls.setup {
+      capabilities = capabilities,
+    }
+  end
+})

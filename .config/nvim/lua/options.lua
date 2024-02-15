@@ -12,3 +12,9 @@ vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.opt.cursorline = true
 vim.opt.cursorlineopt = "number"
+
+vim.o.foldcolumn = "1"
+vim.o.foldenable = true
+vim.o.foldlevelstart = 99
+vim.o.foldlevel = 99
+

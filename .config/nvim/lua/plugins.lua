@@ -128,23 +128,22 @@ local packages = {
   {
     "hrsh7th/nvim-cmp",
     config = function() require "plugins.completion" end,
-    event = { "BufReadPre", "BufNewFile" },
+    event = "InsertEnter",
     dependencies = { "nvim-web-devicons", "lspkind.nvim" }
   },
 
   {
     "L3MON4D3/LuaSnip",
     build = "make install_jsregexp",
-    config = function()
-      require("luasnip.loaders.from_vscode").lazy_load()
-    end,
-    event = "BufReadPre",
+    config = function() require"plugins.snippets" end,
+    event = "InsertEnter",
+    dependencies = { "rafamadriz/friendly-snippets" }
   },
 
   {
     'saadparwaiz1/cmp_luasnip',
     dependencies = "LuaSnip",
-    event = "BufReadPre",
+    event = "InsertEnter",
   },
 
   {
@@ -173,7 +172,9 @@ local packages = {
   {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
-    config = true,
+    opts = {
+        whitespace = { highlight = {"Normal"} }
+    },
     event = "BufRead",
   },
 
@@ -279,8 +280,32 @@ local packages = {
       "nvim-tree/nvim-web-devicons"
     },
     event = "LspAttach",
-  }
+  },
 
+  {
+    "williamboman/mason.nvim",
+    config = true,
+    cmd = { "Mason", "MasonInstall", "MasonUpdate", "MasonUninstall", "MasonUninstallAll", "MasonLog" }
+  },
+
+  {
+    "williamboman/mason-lspconfig.nvim",
+    lazy = true
+  },
+
+  {
+    "norcalli/nvim-colorizer.lua",
+     ft = { "html", "css", "vue", "javascript" },
+     config = function ()
+       require"colorizer".setup()
+     end
+  },
+
+  {
+    'kevinhwang91/nvim-ufo', dependencies = 'kevinhwang91/promise-async',
+    config = true,
+    lazy = true,
+  }
 }
 
 require "lazy".setup(packages)

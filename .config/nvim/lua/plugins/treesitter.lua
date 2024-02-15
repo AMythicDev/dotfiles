@@ -1,4 +1,4 @@
-require"nvim-treesitter.configs".setup {
+require "nvim-treesitter.configs".setup {
   ensure_installed = { "bash", "lua", "markdown", "markdown_inline", "regex", "rust", "vim", "vimdoc" },
   auto_install = false,
 
@@ -9,4 +9,8 @@ require"nvim-treesitter.configs".setup {
   indent = {
     enable = true
   },
+
+  incremental_selection = {
+    enable = true
+  }
 }

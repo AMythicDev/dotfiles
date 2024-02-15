@@ -10,7 +10,7 @@ disabled = true
 
 [username]
 disabled = false
-show_always = true
+show_always = false
 style_user = "bold bright-purple"
 
 [rust]

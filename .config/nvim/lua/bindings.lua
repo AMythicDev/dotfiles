@@ -5,7 +5,7 @@ local function wrap_cmd(c)
 end
 
 local mappings = {
-  ["<space>"] = { function() require "telescope.builtin".find_files() end, "Find file" },
+  ["<space>"] = { function() require "telescope.builtin".git_files() end, "Find file" },
   ["."] = { function() require "telescope".extensions.file_browser.file_browser() end, "File Browser" },
   ["/"] = { function() require "telescope.builtin".current_buffer_fuzzy_find() end, "Search in file" },
   q = { wrap_cmd("quit"), "Quit" },
@@ -23,9 +23,6 @@ local mappings = {
     k = { function() require('bufdelete').bufdelete(0, true) end, "Kill buffer" },
     i = { function() require "telescope.builtin".buffers() end, "List buffers" },
   },
-  g = {
-    name = "git",
-  },
   l = {
     name = "lsp",
     d = { function() require "telescope.builtin".lsp_definitions() end, "Go to definition" },
@@ -42,7 +39,10 @@ local mappings = {
       w = { function() require "telescope.builtin".lsp_dynamic_workspace_symbols() end, "Workspace symbols" },
     }
   },
-  t = { function() require "telescope.builtin".treesitter() end, "Treesitter" },
+  t = {
+    name = "treesitter",
+    t = { function() require "telescope.builtin".treesitter() end, "Treesitter telescope" },
+  },
   w = {
     name = "window",
     h = { wrap_cmd("wincmd h"), "Focus window left" },
@@ -60,6 +60,15 @@ local mappings = {
 }
 
 vim.keymap.set("n", "K", wrap_cmd("Lspsaga hover_doc"), { noremap = true, silent = true, desc = "Hover Symbol" })
+vim.keymap.set({ "n", "v", "i" }, "<up>", "<Nop>", {})
+vim.keymap.set({ "n", "v", "i" }, "<down>", "<Nop>", {})
+vim.keymap.set({ "n", "v", "i" }, "<right>", "<Nop>", {})
+vim.keymap.set({ "n", "v", "i" }, "<left>", "<Nop>", {})
+
+vim.keymap.set("i", "<c-h>", "<left>", { noremap = true })
+vim.keymap.set("i", "<c-j>", "<down>", { noremap = true })
+vim.keymap.set("i", "<c-k>", "<up>", { noremap = true })
+vim.keymap.set("i", "<c-l>", "<right>", { noremap = true })
 
 vim.api.nvim_set_keymap("n", "<c-h>", wrap_cmd("wincmd h"), { noremap = true, silent = true, desc = "Focus left window" })
 

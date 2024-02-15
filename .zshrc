@@ -65,7 +65,9 @@ zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-export PATH=~/.local/bin:~/.cargo/bin:$PATH
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$HOME/.local/bin:$BUN_INSTALL/bin:$HOME/.cargo/bin:$PATH"
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
@@ -103,9 +105,15 @@ source $ZSH/oh-my-zsh.sh
 alias nv=nvim
 alias zj=zellij
 alias confman="git --work-tree $HOME --git-dir $HOME/dotfiles/"
+alias ls=eza
 
 source ~/projects/pj/pj
 
 export EDITOR=nvim
 export VISUAL=nvim
 
+# bun completions
+[ -s "/home/arijit/.oh-my-zsh/completions/_bun" ] && source "/home/arijit/.oh-my-zsh/completions/_bun"
+
+# zoxide
+eval "$(zoxide init zsh)"
