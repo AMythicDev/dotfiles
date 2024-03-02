@@ -1,4 +1,5 @@
 local wk = require("which-key")
+local functions = require("functions")
 
 local function wrap_cmd(c)
   return ":" .. c .. "<cr>"
@@ -7,12 +8,23 @@ end
 local mappings = {
   ["<space>"] = { function() require "telescope.builtin".git_files() end, "Find file" },
   ["."] = { function() require "telescope".extensions.file_browser.file_browser() end, "File Browser" },
-  ["/"] = { function() require "telescope.builtin".current_buffer_fuzzy_find() end, "Search in file" },
+  ["f"] = { function() require "telescope.builtin".current_buffer_fuzzy_find() end, "Search in file" },
   q = { wrap_cmd("quit"), "Quit" },
   Q = { wrap_cmd("quitall!"), "Quit nvim" },
   L = { wrap_cmd("Lazy"), "Lazy" },
   s = { wrap_cmd("write"), "Save" },
-  h = { wrap_cmd("hohlsearch"), "Save" },
+  h = {
+    name = "harpoon",
+    a = { function() require("harpoon"):list():append() end, "Add to list" },
+    b = { function() require("harpoon"):list():prev() end, "Previous buffer" },
+    n = { function() require("harpoon"):list():next() end, "Next buffer" },
+    ["1"] = { function() require("harpoon"):list():select(1) end, "Go to buffer 1" },
+    ["2"] = { function() require("harpoon"):list():select(2) end, "Go to buffer 2" },
+    ["3"] = { function() require("harpoon"):list():select(3) end, "Go to buffer 3" },
+    ["4"] = { function() require("harpoon"):list():select(4) end, "Go to buffer 4" },
+    ["5"] = { function() require("harpoon"):list():select(5) end, "Go to buffer 5" },
+    e = { functions.harpoon_menu, "Show harpoon" },
+  },
   e = { function() require "nvim-tree.api".tree.toggle() end, "File Explorer" },
   ["]"] = { wrap_cmd("bnext \"v:count1\""), "Next buffer" },
   ["["] = { wrap_cmd("bprevious \"v:count1\""), "Prev buffer" },
@@ -29,10 +41,10 @@ local mappings = {
     D = { vim.lsp.buf.declaration, "Go to declaration" },
     r = { wrap_cmd("Lspsaga rename ++project"), "Rename symbol" },
     f = { vim.lsp.buf.format, "Run code formatter" },
-    R = { function() require "telescope.builtin".lsp_references() end, "Show references" },
+    R = { function() require "trouble".toggle("lsp_references") end, "Show references" },
     a = { wrap_cmd("Lspsaga code_action"), "Show code actions" },
     i = { function() require "telescope.builtin".lsp_implementations() end, "Go to implementation" },
-    x = { function() require "telescope.builtin".diagnostics() end, "Go to implementation" },
+    t = { functions.show_diagnostics, "Show diagnostics" },
     s = {
       name = "symbols",
       d = { function() require "telescope.builtin".lsp_document_symbols() end, "Document symbols" },

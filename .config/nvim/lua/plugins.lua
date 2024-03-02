@@ -42,12 +42,38 @@ local packages = {
   {
     'numToStr/Comment.nvim',
     config = true,
+    opts = {
+      toggler = {
+        ---Line-comment keymap
+        line = '<leader>/',
+        ---Block-comment keymap
+        block = '<leader>*',
+      },
+      opleader = {
+        ---Line-comment keymap
+        line = '<leader>/',
+        ---Block-comment keymap
+        block = '<leader>*',
+      },
+    },
     keys = {
-      { "gc", mode = "n" },
-      { "gb", mode = "n" },
-      { "gc", mode = "v" },
-      { "gb", mode = "v" },
+      { "<leader>/", mode = "n" },
+      { "<leader>*", mode = "n" },
+      { "<leader>/", mode = "v" },
+      { "<leader>*", mode = "v" },
     }
+  },
+
+  {
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {
+      settings = {
+        save_on_toggle = false,
+        sync_on_ui_close = false,
+      }
+    },
   },
 
   {
@@ -135,7 +161,7 @@ local packages = {
   {
     "L3MON4D3/LuaSnip",
     build = "make install_jsregexp",
-    config = function() require"plugins.snippets" end,
+    config = function() require "plugins.snippets" end,
     event = "InsertEnter",
     dependencies = { "rafamadriz/friendly-snippets" }
   },
@@ -173,7 +199,7 @@ local packages = {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
     opts = {
-        whitespace = { highlight = {"Normal"} }
+      whitespace = { highlight = { "Normal" } }
     },
     event = "BufRead",
   },
@@ -204,7 +230,7 @@ local packages = {
     ft = "gitcommit",
   },
 
-  { "onsails/lspkind.nvim", lazy = true },
+  { "onsails/lspkind.nvim",  lazy = true },
 
   {
     'rcarriga/nvim-notify',
@@ -234,16 +260,33 @@ local packages = {
   },
 
   {
-    "ggandor/leap.nvim",
-    keys = {
-      { "s", mode = "n" },
-      { "S", mode = "n" },
-      { "s", mode = "v" },
-      { "S", mode = "v" },
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    opts = {
+      search = {
+        exclude = {
+          "notify",
+          "cmp_menu",
+          "noice",
+          "flash_prompt",
+          function(win)
+            -- exclude non-focusable windows
+            return not vim.api.nvim_win_get_config(win).focusable
+          end,
+          "NvimTree",
+        },
+      },
+      jump = {
+        autojump = true,
+      },
     },
-    config = function()
-      require "leap".add_default_mappings()
-    end
+    keys = {
+      { "s",     mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
+      { "S",     mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
+      { "r",     mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
+      { "R",     mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+      { "<c-s>", mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
+    },
   },
 
   {
@@ -295,17 +338,14 @@ local packages = {
 
   {
     "norcalli/nvim-colorizer.lua",
-     ft = { "html", "css", "vue", "javascript" },
-     config = function ()
-       require"colorizer".setup()
-     end
+    ft = { "html", "css", "vue", "javascript" },
+    config = function()
+      require "colorizer".setup()
+    end
   },
 
-  {
-    'kevinhwang91/nvim-ufo', dependencies = 'kevinhwang91/promise-async',
-    config = true,
-    lazy = true,
-  }
+  { 'echasnovski/mini.nvim', version = '*', config = function() require "plugins.mini_conf" end, },
+
 }
 
 require "lazy".setup(packages)

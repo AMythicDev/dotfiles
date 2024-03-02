@@ -67,7 +67,7 @@ zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
-export PATH="$HOME/.local/bin:$BUN_INSTALL/bin:$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/zig/:$HOME/.local/bin:$BUN_INSTALL/bin:$HOME/.cargo/bin:$PATH"
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
@@ -103,11 +103,10 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias nv=nvim
-alias zj=zellij
-alias confman="git --work-tree $HOME --git-dir $HOME/dotfiles/"
 alias ls=eza
 
-source ~/projects/pj/pj
+# https://gist.github.com/arijit79/c43552d9e54afc65b82d0e5663649b0c
+alias zj=~/projects/zellij-attacher
 
 export EDITOR=nvim
 export VISUAL=nvim
