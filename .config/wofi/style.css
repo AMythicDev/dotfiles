@@ -1,5 +1,5 @@
 #entry:selected {
-  background: #f5c2e7;
+  background-color: #365bb6;
   font-weight: bold;
   color: #ffffff;
 }
@@ -10,19 +10,27 @@
 }
 
 #outer-box {
-  background: #1e1e2e;
+  /* background: #1e1e2eff; */
   border: 5px solid #313244;
+  background: rgba(0, 0, 0, 0);
+  border: none;
+}
+
+#window {
+  background-color: rgba(0, 6, 54, 0.7);
 }
 
 #input {
   font-weight: bold;
   color: white;
   border: none;
-  background: #1e1e2e;
+  background-color: rgba(0, 6, 54, 0.7);
   border-bottom: 2px solid #585b70;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 #input:focus {
-  border: 2px solid #f5c2e7;
+  border: 2px solid rgba(54, 91, 182, 0.5);
   outline: none;
 }

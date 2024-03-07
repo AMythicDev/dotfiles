@@ -8,11 +8,15 @@
 }
 
 window#waybar {
-    background-color: rgba(0, 0, 0, 0);
+    background-color: rgb(20, 20, 35);
     color: #ffffff;
     transition-property: background-color;
     transition-duration: .5s;
     font-weight: bold;
+}
+
+window#waybar.empty, window#waybar.floating {
+    background-color: rgba(0, 0, 0, 0);
 }
 
 window#waybar.hidden {
