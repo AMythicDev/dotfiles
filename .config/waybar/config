@@ -1,39 +1,42 @@
 {
-    // "layer": "top", // Waybar at top layer
-    // "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 19, // Waybar height (to be removed for auto height)
-    // "width": 1280, // Waybar width
+    "layer": "top", // Waybar at top layer
+    "position": "top", // Waybar position (top|bottom|left|right)
+    "height": 22, // Waybar height (to be removed for auto height)
+
     // Choose the order of the modules
-    "modules-left": ["hyprland/workspaces", "hyprland/mode"],
-    "modules-center": ["hyprland/window"],
+    "modules-left": ["hyprland/window"],
+    "modules-center": ["hyprland/workspaces"],
     "modules-right": ["pulseaudio", "network", "battery", "cpu", "memory", "clock", "tray"],
+
     // Modules configuration
-    // "sway/workspaces": {
-    //     "disable-scroll": true,
-    //     "all-outputs": true,
-    //     "format": "{name}: {icon}",
-    //     "format-icons": {
-    //         "1": "",
-    //         "2": "",
-    //         "3": "",
-    //         "4": "",
-    //         "5": "",
-    //         "urgent": "",
-    //         "focused": "",
-    //         "default": ""
-    //     }
-    // },
-    "hyprland/mode": {
-        "format": "<span style=\"italic\">{}</span>"
-    },
     "tray": {
         // "icon-size": 21,
         "spacing": 10
     },
+    "hyprland/workspaces": {
+      "persistent-workspaces": {
+        "*": 5
+      }
+    },
+    "hyprland/window": {
+      "format": "󰣛  {}",
+      "rewrite": {
+        "(.*) — Mozilla Firefox": "$1"
+      }
+    },
+    "battery": {
+      "interval": 5,
+      "states": {
+        "warning": 20,
+        "critical": 5
+      },
+      "format": "{icon} {capacity}%",
+      "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+    },
     "clock": {
-        // "timezone": "America/New_York",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
+        "format-alt": "{:%Y-%m-%d}",
+        "format": "󰥔  {:%H:%M}"
     },
     "cpu": {
         "format": "{usage}% ",
@@ -44,11 +47,13 @@
     },
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-wifi": "  {signalStrength}%",
         "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
         "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+        "format-disconnected": "󰣼",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+
+        "tooltip-format-wifi": "Connected to {essid}"
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
@@ -70,3 +75,5 @@
         "on-click": "pavucontrol"
     },
 }
+
+// vim: ft=jsonc

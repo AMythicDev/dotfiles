@@ -230,7 +230,7 @@ local packages = {
     ft = "gitcommit",
   },
 
-  { "onsails/lspkind.nvim",  lazy = true },
+  { "onsails/lspkind.nvim", lazy = true },
 
   {
     'rcarriga/nvim-notify',
@@ -344,7 +344,7 @@ local packages = {
     end
   },
 
-  { 'echasnovski/mini.nvim', version = '*', config = function() require "plugins.mini_conf" end, },
+  -- { 'echasnovski/mini.nvim', version = '*',  lazy = true },
 
 }
 

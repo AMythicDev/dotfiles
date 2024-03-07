@@ -1,4 +1,4 @@
-local cmp = require'cmp'
+local cmp = require 'cmp'
 
 cmp.setup({
   snippet = {
@@ -12,7 +12,10 @@ cmp.setup({
     documentation = cmp.config.window.bordered(),
   },
   view = {
-    entries = { name = 'custom', selection_order = 'near_cursor' }
+    entries = { name = 'custom', selection_order = 'near_cursor' },
+    docs = {
+      auto_open = false,
+    }
   },
   formatting = {
     format = function(entry, vim_item)
@@ -32,6 +35,13 @@ cmp.setup({
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.abort(),
+    ['<C-g>'] = function()
+      if cmp.visible_docs() then
+        cmp.close_docs()
+      else
+        cmp.open_docs()
+      end
+    end,
     ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
   }),
   sources = cmp.config.sources({
