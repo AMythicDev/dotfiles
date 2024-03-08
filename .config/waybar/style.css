@@ -123,7 +123,7 @@ window#waybar.chromium {
 }
 
 #battery.charging {
-    color: #26A65B;
+    color: #03fc9d;
 }
 
 #battery.warning {
@@ -144,7 +144,7 @@ window#waybar.chromium {
     color: #f53c3c;
     animation-name: blink;
     animation-duration: 0.5s;
-    animation-timing-function: linear;
+    animation-timing-function: steps(12);
     animation-iteration-count: infinite;
     animation-direction: alternate;
 }
