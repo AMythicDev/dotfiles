@@ -12,7 +12,8 @@ local packages = {
     config = function()
       require "plugins.tokynight_conf"
       vim.cmd("colorscheme tokyonight")
-    end
+      vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
+    end,
   },
 
   {
@@ -230,7 +231,10 @@ local packages = {
     ft = "gitcommit",
   },
 
-  { "onsails/lspkind.nvim", lazy = true },
+  {
+    "onsails/lspkind.nvim",
+    lazy = true,
+  },
 
   {
     'rcarriga/nvim-notify',
@@ -344,7 +348,12 @@ local packages = {
     end
   },
 
-  -- { 'echasnovski/mini.nvim', version = '*',  lazy = true },
+  {
+    'echasnovski/mini.nvim',
+    version = '*',
+    event = "VeryLazy",
+    config = function() require "plugins.mini" end,
+  },
 
 }
 

@@ -1,19 +1,48 @@
 layout {
+    pane_template name="statusbar" borderless=true {
+      plugin location="file:/home/arijit/.config/zellij/plugins/zjstatus.wasm" {
+        format_left   "{mode}#[fg=#02cf24]#[bg=#02cf24,fg=#ffffff,bold] {session} #[fg=#02cf24]"
+        format_center "{tabs}"
+        format_right  "{command_git_branch} {datetime}"
+        format_space  ""
+
+        border_enabled  "false"
+        border_char     "─"
+        border_format   "#[fg=#6C7086]{char}"
+        border_position "top"
+
+        hide_frame_for_single_pane "true"
+
+        mode_normal        "#[bg=#609cfc,fg=#ffffff] {name}#[fg=#609cfc]"
+        mode_locked        "#[bg=#f71665,fg=#ffffff] {name}#[fg=#f71665]"
+        mode_resize        "#[bg=#04ccae,fg=#ffffff] {name}#[fg=#04ccae]"
+        mode_default_to_mode "resize"
+
+        tab_normal   "#[fg=#6C7086] {name} "
+        tab_active   "#[fg=#609cfc]#[fg=#ffffff,bg=#609cfc,bold,italic] {name} #[fg=#609cfc]"
+
+        command_git_branch_command     "git rev-parse --abbrev-ref HEAD"
+        command_git_branch_format      "#[fg=blue] {stdout} "
+        command_git_branch_interval    "10"
+        command_git_branch_rendermode  "static"
+
+        datetime        "#[fg=#6C7086,bold] {format} "
+        datetime_format "%A, %d %b %Y %H:%M"
+        datetime_timezone "Asia/Kolkata"
+      }
+    }
+
   tab name="nvim" {
     pane {
       borderless true
       command "nvim"
     }
-    pane size=1 borderless=true {
-      plugin location="zellij:compact-bar"
-    }
+    statusbar size=1
   }
 
   tab name="terminal" {
     pane
-    pane size=1 borderless=true {
-      plugin location="zellij:compact-bar"
-    }
+    statusbar size=1
   }
 
   tab name="lazygit" {
@@ -21,9 +50,7 @@ layout {
       borderless true
       command "lazygit"
     }
-    pane size=1 borderless=true {
-      plugin location="zellij:compact-bar"
-    }
+    statusbar size=1
   }
 }
 

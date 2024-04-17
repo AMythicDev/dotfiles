@@ -126,7 +126,7 @@ window#waybar.chromium {
     color: #03fc9d;
 }
 
-#battery.warning {
+#battery.warning:not(.charging) {
     color: #f2be63;
 }
 
@@ -151,6 +151,10 @@ window#waybar.chromium {
 
 label:focus {
     background-color: #000000;
+}
+
+#clock {
+  min-width: 30px;
 }
 
 #memory {

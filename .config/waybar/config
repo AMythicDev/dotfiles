@@ -4,9 +4,9 @@
     "height": 22, // Waybar height (to be removed for auto height)
 
     // Choose the order of the modules
-    "modules-left": ["hyprland/window"],
+    "modules-left": ["clock", "hyprland/window"],
     "modules-center": ["hyprland/workspaces"],
-    "modules-right": ["pulseaudio", "network", "battery", "cpu", "memory", "clock", "tray"],
+    "modules-right": ["pulseaudio", "network", "battery", "cpu", "memory", "tray"],
 
     // Modules configuration
     "tray": {

@@ -18,6 +18,7 @@ cmp.setup({
     }
   },
   formatting = {
+    fields = { "kind", "abbr", "menu" },
     format = function(entry, vim_item)
       if vim.tbl_contains({ 'path' }, entry.source.name) then
         local icon, hl_group = require('nvim-web-devicons').get_icon(entry:get_completion_item().label)
@@ -27,7 +28,11 @@ cmp.setup({
           return vim_item
         end
       end
-      return require('lspkind').cmp_format({ with_text = false })(entry, vim_item)
+
+      local kind = require("lspkind").cmp_format({ mode = "symbol" })(entry, vim_item)
+      kind.kind = " " .. (kind.kind or "") .. " "
+
+      return kind
     end
   },
   mapping = cmp.mapping.preset.insert({
@@ -35,7 +40,7 @@ cmp.setup({
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.abort(),
-    ['<C-g>'] = function()
+    ['<C-d>'] = function()
       if cmp.visible_docs() then
         cmp.close_docs()
       else
