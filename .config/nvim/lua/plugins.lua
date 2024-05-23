@@ -25,16 +25,6 @@ local packages = {
   },
 
   {
-    "nvim-telescope/telescope-file-browser.nvim",
-    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
-    cmd = { "Telescope file_browser" },
-    keys = { "<leader>." },
-    config = function()
-      require("telescope").load_extension "file_browser"
-    end
-  },
-
-  {
     'nvim-telescope/telescope-fzf-native.nvim',
     lazy = true,
     build = 'make',
@@ -140,7 +130,7 @@ local packages = {
           group_empty = true,
         },
         filters = {
-          dotfiles = true,
+          dotfiles = false,
         },
       })
     end,
@@ -346,6 +336,14 @@ local packages = {
     config = function()
       require "colorizer".setup()
     end
+  },
+
+  {
+    'stevearc/oil.nvim',
+    opts = {},
+    -- Optional dependencies
+    cmd = "Oil",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
   },
 
   {

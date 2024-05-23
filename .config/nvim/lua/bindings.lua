@@ -6,8 +6,8 @@ local function wrap_cmd(c)
 end
 
 local mappings = {
-  ["<space>"] = { function() require "telescope.builtin".git_files() end, "Find file" },
-  ["."] = { function() require "telescope".extensions.file_browser.file_browser() end, "File Browser" },
+  ["<space>"] = { function() require "telescope.builtin".find_files() end, "Find file" },
+  ["."] = { function() require "telescope.builtin".live_grep() end, "Live Grep" },
   ["f"] = { function() require "telescope.builtin".current_buffer_fuzzy_find() end, "Search in file" },
   q = { wrap_cmd("quit"), "Quit" },
   Q = { wrap_cmd("quitall!"), "Quit nvim" },
@@ -95,9 +95,11 @@ vim.api.nvim_set_keymap("n", "<c-left>", wrap_cmd("wincmd <"), { noremap = true,
 vim.api.nvim_set_keymap("n", "<c-up>", wrap_cmd("wincmd +"), { noremap = true, silent = true, desc = "Increase height" })
 vim.api.nvim_set_keymap("n", "<c-down>", wrap_cmd("wincmd -"),
   { noremap = true, silent = true, desc = "Decrease height" })
-vim.api.nvim_set_keymap("n", "X", "\"_d", { noremap = true, silent = true, desc = "Go to beginning" })
+
+vim.api.nvim_set_keymap("n", "X", "\"_d", { noremap = true, silent = true, desc = "Delete" })
+
 vim.api.nvim_set_keymap("n", "<c-h>", "^", { noremap = true, silent = true, desc = "Go to beginning" })
-vim.api.nvim_set_keymap("n", "<c-l>", "$", { noremap = true, silent = true, desc = "Go to beginning" })
+vim.api.nvim_set_keymap("n", "<c-l>", "$", { noremap = true, silent = true, desc = "Go to end" })
 
 wk.register(mappings, {
   mode = "n",

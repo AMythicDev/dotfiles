@@ -19,7 +19,7 @@ layout {
         mode_default_to_mode "resize"
 
         tab_normal   "#[fg=#6C7086] {name} "
-        tab_active   "#[fg=#609cfc]#[fg=#ffffff,bg=#609cfc,bold,italic] {name} #[fg=#609cfc]"
+        tab_active   "#[fg=#609cfc]#[fg=#ffffff,bg=#609cfc,bold,italic]{name}#[fg=#609cfc]"
 
         command_git_branch_command     "git rev-parse --abbrev-ref HEAD"
         command_git_branch_format      "#[fg=blue] {stdout} "
@@ -40,7 +40,7 @@ layout {
     statusbar size=1
   }
 
-  tab name="terminal" {
+  tab name="terminal" focus=true {
     pane
     statusbar size=1
   }

@@ -1,0 +1,23 @@
+; Constants for my configuration
+; You should change as per your system
+;
+; Max brightness
+; Typically found in /sys/class/backlight/intel_backlight/max_brightness
+(defvar MAX-BRIGHTNESS 96000)
+
+(defpoll time :interval "60s" `date +%H:%M`)
+(deflisten brightness `tail -F /sys/class/backlight/intel_backlight/actual_brightness`)
+
+(defwidget top-layer []
+(box (scale :value {brightness / MAX-BRIGHTNESS * 100} :min 0 :max 100 :onchange `brightnessctl set {}%`)))
+
+(defwindow example
+  :monitor 0
+  :geometry (geometry :x "0%"
+    :y "90px"
+    :width "50%"
+    :height "30%"
+    :anchor "top right")
+ :stacking "bg"
+(top-layer))
+
