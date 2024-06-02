@@ -5,7 +5,6 @@ end
 require('lualine').setup {
   options = {
     icons_enabled = true,
-    theme = 'tokyonight',
     component_separators = { left = '', right = '' },
     section_separators = { left = '', right = '' },
     disabled_filetypes = {
@@ -50,7 +49,6 @@ vim.api.nvim_create_autocmd({ "LspAttach" }, {
     local config = lualine.get_config()
 
     config.sections.lualine_c[2] = function() return require "lsp-progress".progress() end
-    config.sections.lualine_c[3] = function() return require "lspsaga.symbol.winbar".get_bar() end
 
     lualine.setup(config)
   end

@@ -116,4 +116,4 @@ export VISUAL=nvim
 
 # zoxide
 eval "$(zoxide init zsh)"
-export PATH=$PATH:/home/arijit/.zigvm/bin/
+export PATH=$PATH:/home/arijit/.zigvm/bin
