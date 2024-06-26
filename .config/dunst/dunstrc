@@ -163,7 +163,7 @@
     #   %n  progress value if set without any extra characters
     #   %%  Literal %
     # Markup is allowed
-    format = "%a\n<span fgcolor='#011b6f00'>__________________________________________________</span>\n<b>%s</b>\n%b"
+    format = "%a\n\n<b>%s</b>\n%b"
 
     # Alignment of message text.
     # Possible values are "left", "center" and "right".
@@ -314,7 +314,7 @@
     background = "#5c5b5b22"
     foreground = "#888888"
     timeout = 10
-    format = "%a\n<span fgcolor='#5c5b5b00'>__________________________________________________</span>\n<b>%s</b>\n%b"
+      format = "%a\n\n<b>%s</b>\n%b"
     # Icon for notifications with low urgency, uncomment to enable
     #default_icon = /path/to/icon
 
@@ -323,7 +323,7 @@
     foreground = "#ffffff"
     frame_color = "#011b6f"
     timeout = 10
-    format = "%a\n<span fgcolor='#011b6f00'>__________________________________________________</span>\n<b>%s</b>\n%b"
+    format = "%a\n\n<b>%s</b>\n%b"
     # Icon for notifications with normal urgency, uncomment to enable
     #default_icon = /path/to/icon
 
@@ -331,7 +331,7 @@
     background = "#fc383822"
     foreground = "#ffffff"
     frame_color = "#fc3838"
-    format = "%a\n<span fgcolor='#fc383800'>__________________________________________________</span>\n<b>%s</b>\n%b"
+    format = "%a\n\n<b>%s</b>\n%b"
     timeout = 0
     # Icon for notifications with critical urgency, uncomment to enable
     #default_icon = /path/to/icon

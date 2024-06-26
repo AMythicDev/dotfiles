@@ -170,13 +170,12 @@ label:focus {
 }
 
 #pulseaudio {
-    background-color: @pink;
-    color: #000000;
+    color: #03fc9d;
 }
 
 #pulseaudio.muted {
     background-color: #90b1b1;
-    color: @teal;
+    color: #f53c3c;
 }
 
 #custom-media {

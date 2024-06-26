@@ -12,3 +12,4 @@ vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.opt.cursorline = true
 vim.opt.cursorlineopt = "number"
+vim.g.zig_fmt_autosave = 0
