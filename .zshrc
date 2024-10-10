@@ -67,13 +67,13 @@ zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
-export PATH="$HOME/zig/:$HOME/.local/bin:$BUN_INSTALL/bin:$HOME/.cargo/bin:$PATH"
+export PATH="$$HOME/.local/bin:$BUN_INSTALL/bin:$HOME/.cargo/bin:$PATH"
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git rust zsh-syntax-highlighting sudo ripgrep fd starship dnf)
+plugins=(git rust zsh-syntax-highlighting sudo starship dnf)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -116,4 +116,6 @@ export VISUAL=nvim
 
 # zoxide
 eval "$(zoxide init zsh)"
-export PATH=$PATH:/home/arijit/.zigvm/bin
+export PATH=$PATH:/home/arijit/.zigverm/bin
+export PATH=$HOME/.local/bin:$PATH
+export PATH=$PATH:/home/arijit/.zigverm/bin

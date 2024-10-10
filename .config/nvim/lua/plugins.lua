@@ -14,15 +14,6 @@ local packages = {
     end
   },
 
-  -- {
-  --   "folke/tokyonight.nvim",
-  --   config = function()
-  --     require "plugins.tokynight_conf"
-  --     vim.cmd("colorscheme tokyonight")
-  --     vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
-  --   end,
-  -- },
-
   {
     'nvim-telescope/telescope.nvim',
     branch = "0.1.x",
@@ -99,6 +90,7 @@ local packages = {
     opts = true,
     lazy = true,
   },
+
   {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
@@ -137,7 +129,7 @@ local packages = {
           group_empty = true,
         },
         filters = {
-          dotfiles = false,
+          dotfiles = true,
         },
       })
     end,

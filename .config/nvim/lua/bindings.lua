@@ -6,35 +6,6 @@ local function wrap_cmd(c)
 end
 
 local mappings = {
-  ["<space>"] = { function() require "telescope.builtin".find_files() end, "Find file" },
-  ["."] = { function() require "telescope.builtin".live_grep() end, "Live Grep" },
-  ["f"] = { function() require "telescope.builtin".current_buffer_fuzzy_find() end, "Search in file" },
-  q = { wrap_cmd("quit"), "Quit" },
-  Q = { wrap_cmd("quitall!"), "Quit nvim" },
-  L = { wrap_cmd("Lazy"), "Lazy" },
-  s = { wrap_cmd("write"), "Save" },
-  h = {
-    name = "harpoon",
-    a = { function() require("harpoon"):list():append() end, "Add to list" },
-    b = { function() require("harpoon"):list():prev() end, "Previous buffer" },
-    n = { function() require("harpoon"):list():next() end, "Next buffer" },
-    ["1"] = { function() require("harpoon"):list():select(1) end, "Go to buffer 1" },
-    ["2"] = { function() require("harpoon"):list():select(2) end, "Go to buffer 2" },
-    ["3"] = { function() require("harpoon"):list():select(3) end, "Go to buffer 3" },
-    ["4"] = { function() require("harpoon"):list():select(4) end, "Go to buffer 4" },
-    ["5"] = { function() require("harpoon"):list():select(5) end, "Go to buffer 5" },
-    e = { functions.harpoon_menu, "Show harpoon" },
-  },
-  e = { function() require "nvim-tree.api".tree.toggle() end, "File Explorer" },
-  ["]"] = { wrap_cmd("bnext \"v:count1\""), "Next buffer" },
-  ["["] = { wrap_cmd("bprevious \"v:count1\""), "Prev buffer" },
-  b = {
-    name = "buffers",
-    n = { wrap_cmd("bnext"), "Next buffer" },
-    p = { wrap_cmd("bprevious"), "Prev buffer" },
-    k = { function() require('bufdelete').bufdelete(0, true) end, "Kill buffer" },
-    i = { function() require "telescope.builtin".buffers() end, "List buffers" },
-  },
   l = {
     name = "lsp",
     d = { function() require "telescope.builtin".lsp_definitions() end, "Go to definition" },
@@ -51,24 +22,49 @@ local mappings = {
       w = { function() require "telescope.builtin".lsp_dynamic_workspace_symbols() end, "Workspace symbols" },
     }
   },
-  t = {
-    name = "treesitter",
-    t = { function() require "telescope.builtin".treesitter() end, "Treesitter telescope" },
-  },
-  w = {
-    name = "window",
-    h = { wrap_cmd("wincmd h"), "Focus window left" },
-    j = { wrap_cmd("wincmd j"), "Focus window down" },
-    k = { wrap_cmd("wincmd k"), "Focus window up" },
-    l = { wrap_cmd("wincmd l"), "Focus window right" },
-    s = { wrap_cmd("split"), "Split window horizontally" },
-    v = { wrap_cmd("vsplit"), "Split window vertically" },
-    ["+"] = { wrap_cmd("wincmd +"), "Increase window height" },
-    ["-"] = { wrap_cmd("wincmd -"), "Decrease window height" },
-    [">"] = { wrap_cmd("wincmd >"), "Increase window width" },
-    ["<"] = { wrap_cmd("wincmd <"), "Decrease window width" },
-    ["="] = { wrap_cmd("wincmd ="), "Equalize all windows" },
-  },
+}
+
+local mappings = {
+  { "<leader><space>", function() require "telescope.builtin".find_files() end,                    desc = "Find file" },
+  { "<leader>.",       function() require "telescope.builtin".live_grep() end,                     desc = "Live grap" },
+  { "<leader>f",       function() require "telescope.builtin".current_buffer_fuzzy_find() end,     desc = "Find" },
+  { "<leader>q",       wrap_cmd("quit"),                                                           desc = "Quit" },
+  { "<leader>Q",       wrap_cmd("quitall!"),                                                       desc = "Quit nvim" },
+  { "<leader>L",       wrap_cmd("Lazy"),                                                           desc = "Lazy" },
+  { "<leader>s",       wrap_cmd("write"),                                                          desc = "save" },
+  { "<leader>e",       function() require "nvim-tree.api".tree.toggle() end,                       desc = "File Explorer" },
+  { "<leader>w",       proxy = "<c-w>",                                                            group = "windows" },
+  { "<leader>]",       wrap_cmd("bnext \"v:count1\""),                                             desc = "Next buffer" },
+  { "<leader>[",       wrap_cmd("bprevious \"v:count1\""),                                         desc = "Prev buffer" },
+  { "<leader>b",       group = "buffers", },
+  { "<leader>bn",      wrap_cmd("bnext"),                                                          desc = "Next" },
+  { "<leader>bp",      wrap_cmd("bprevious"),                                                      desc = "Prev" },
+  { "<leader>bk",      function() require('bufdelete').bufdelete(0, true) end,                     desc = "Kill" },
+  { "<leader>bl",      function() require "telescope.builtin".buffers() end,                       desc = "List" },
+  { "<leader>h",       group = "harpoon", },
+  { "<leader>ha",      function() require("harpoon"):list():append() end,                          desc = "Add to list" },
+  { "<leader>hp",      function() require("harpoon"):list():prev() end,                            desc = "Prev buffer" },
+  { "<leader>hn",      function() require("harpoon"):list():next() end,                            desc = "Next buffer" },
+  { "<leader>h1",      function() require("harpoon"):list():select(1) end,                         desc = "Buffer 1" },
+  { "<leader>h2",      function() require("harpoon"):list():select(2) end,                         desc = "Buffer 2" },
+  { "<leader>h3",      function() require("harpoon"):list():select(3) end,                         desc = "Buffer 3" },
+  { "<leader>h4",      function() require("harpoon"):list():select(4) end,                         desc = "Buffer 4" },
+  { "<leader>h5",      function() require("harpoon"):list():select(5) end,                         desc = "Buffer 5" },
+  { "<leader>he",      function() functions.harpoon_menu() end,                                    desc = "Show harpoon" },
+  { "<leader>l",       group = "lsp", },
+  { "<leader>ld",      function() require "telescope.builtin".lsp_definitions() end,               desc = "Go to definition" },
+  { "<leader>lD",      vim.lsp.buf.declaration,                                                    desc = "Go to declaration" },
+  { "<leader>lr",      wrap_cmd("Lspsaga rename ++project"),                                       desc = "Rename symbol" },
+  { "<leader>lf",      vim.lsp.buf.format,                                                         desc = "Run code formatter" },
+  { "<leader>lR",      function() require "trouble".toggle("lsp_references") end,                  desc = "Show references" },
+  { "<leader>la",      wrap_cmd("Lspsaga code_action"),                                            desc = "Show code actions" },
+  { "<leader>li",      function() require "telescope.builtin".lsp_implementations() end,           desc = "Go to implementation" },
+  { "<leader>lt",      functions.show_diagnostics,                                                 desc = "Show diagnostics" },
+  { "<leader>ls",      group = "symbols", },
+  { "<leader>lsd",     function() require "telescope.builtin".lsp_document_symbols() end,          desc = "Document symbols" },
+  { "<leader>lsw",     function() require "telescope.builtin".lsp_dynamic_workspace_symbols() end, desc = "Workspace symbols" },
+  { "<leader>t",       group = "treesitter" },
+  { "<leader>tt",      function() require "telescope.builtin".treesitter() end,                    desc = "Treesitter telescope" },
 }
 
 vim.keymap.set("n", "K", wrap_cmd("Lspsaga hover_doc"), { noremap = true, silent = true, desc = "Hover Symbol" })
@@ -101,11 +97,4 @@ vim.api.nvim_set_keymap("n", "X", "\"_d", { noremap = true, silent = true, desc 
 vim.api.nvim_set_keymap("n", "<c-h>", "^", { noremap = true, silent = true, desc = "Go to beginning" })
 vim.api.nvim_set_keymap("n", "<c-l>", "$", { noremap = true, silent = true, desc = "Go to end" })
 
-wk.register(mappings, {
-  mode = "n",
-  prefix = "<leader>",
-})
-wk.register(mappings, {
-  mode = "v",
-  prefix = "<leader>",
-})
+wk.add(mappings)
