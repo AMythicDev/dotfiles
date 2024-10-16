@@ -5,7 +5,7 @@ function M.show_diagnostics()
 
   local trouble = require "trouble"
 
-  trouble.toggle()
+  trouble.toggle("diagnostics")
   vim.api.nvim_set_current_win(current_win)
 end
 

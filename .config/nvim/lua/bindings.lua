@@ -6,25 +6,6 @@ local function wrap_cmd(c)
 end
 
 local mappings = {
-  l = {
-    name = "lsp",
-    d = { function() require "telescope.builtin".lsp_definitions() end, "Go to definition" },
-    D = { vim.lsp.buf.declaration, "Go to declaration" },
-    r = { wrap_cmd("Lspsaga rename ++project"), "Rename symbol" },
-    f = { vim.lsp.buf.format, "Run code formatter" },
-    R = { function() require "trouble".toggle("lsp_references") end, "Show references" },
-    a = { wrap_cmd("Lspsaga code_action"), "Show code actions" },
-    i = { function() require "telescope.builtin".lsp_implementations() end, "Go to implementation" },
-    t = { functions.show_diagnostics, "Show diagnostics" },
-    s = {
-      name = "symbols",
-      d = { function() require "telescope.builtin".lsp_document_symbols() end, "Document symbols" },
-      w = { function() require "telescope.builtin".lsp_dynamic_workspace_symbols() end, "Workspace symbols" },
-    }
-  },
-}
-
-local mappings = {
   { "<leader><space>", function() require "telescope.builtin".find_files() end,                    desc = "Find file" },
   { "<leader>.",       function() require "telescope.builtin".live_grep() end,                     desc = "Live grap" },
   { "<leader>f",       function() require "telescope.builtin".current_buffer_fuzzy_find() end,     desc = "Find" },
@@ -37,8 +18,6 @@ local mappings = {
   { "<leader>]",       wrap_cmd("bnext \"v:count1\""),                                             desc = "Next buffer" },
   { "<leader>[",       wrap_cmd("bprevious \"v:count1\""),                                         desc = "Prev buffer" },
   { "<leader>b",       group = "buffers", },
-  { "<leader>bn",      wrap_cmd("bnext"),                                                          desc = "Next" },
-  { "<leader>bp",      wrap_cmd("bprevious"),                                                      desc = "Prev" },
   { "<leader>bk",      function() require('bufdelete').bufdelete(0, true) end,                     desc = "Kill" },
   { "<leader>bl",      function() require "telescope.builtin".buffers() end,                       desc = "List" },
   { "<leader>h",       group = "harpoon", },
@@ -72,6 +51,11 @@ vim.keymap.set({ "n", "v", "i" }, "<up>", "<Nop>", {})
 vim.keymap.set({ "n", "v", "i" }, "<down>", "<Nop>", {})
 vim.keymap.set({ "n", "v", "i" }, "<right>", "<Nop>", {})
 vim.keymap.set({ "n", "v", "i" }, "<left>", "<Nop>", {})
+
+vim.keymap.set("n", "<leader>]", vim.cmd("bnext " .. vim.v.count1),
+  { silent = true, noremap = true, desc = "Next buffer" })
+vim.keymap.set("n", "<leader>[", vim.cmd("bprevious " .. vim.v.count1),
+  { silent = true, noremap = true, desc = "Prev buffer" })
 
 vim.keymap.set("i", "<c-h>", "<left>", { noremap = true })
 vim.keymap.set("i", "<c-j>", "<down>", { noremap = true })
