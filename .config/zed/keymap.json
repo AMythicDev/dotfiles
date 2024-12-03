@@ -18,7 +18,8 @@
       "space ]": "pane::ActivateNextItem",
       "space [": "pane::ActivatePrevItem",
       "space /": "vim::ToggleComments",
-      "space t": "workspace::ToggleBottomDock"
+      "space t": "workspace::ToggleBottomDock",
+      "space q": "pane::CloseActiveItem"
     }
   },
   {
@@ -31,7 +32,7 @@
     "context": "Editor && vim_mode == insert",
     "bindings": {
       "j k": ["workspace::SendKeystrokes", "escape"],
-      "ctrl-h": "vim::Right",
+      "ctrl-h": "vim::Left",
       "ctrl-j": "vim::Down",
       "ctrl-k": "vim::Up",
       "ctrl-l": "vim::Right"

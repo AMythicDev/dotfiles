@@ -15,6 +15,8 @@
   "scrollbar": {
     "show": "never"
   },
+  "buffer_font_family": "Iosevka Nerd Font",
+  "ui_font_family": "Nimbus Sans",
   "current_line_highlight": "gutter",
   "toolbar": {
     "breadcrumbs": false,
@@ -25,5 +27,10 @@
     "mode": "system",
     "light": "One Light",
     "dark": "Catppuccin Mocha"
+  },
+  "git": {
+    "inline_blame": {
+      "enabled": false
+    }
   }
 }

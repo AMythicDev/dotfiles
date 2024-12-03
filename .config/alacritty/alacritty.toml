@@ -1,4 +1,3 @@
-import = ["/home/arijit/.config/alacritty/theme.toml"]
 
 [cursor]
 style = "Block"
@@ -18,3 +17,6 @@ style = "Medium"
 opacity = 0.8
 startup_mode = "Windowed"
 title = "Alacritty"
+
+[general]
+import = ["/home/arijit/.config/alacritty/theme.toml"]
