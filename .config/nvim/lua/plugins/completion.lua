@@ -1,91 +1,25 @@
-local cmp = require 'cmp'
+local blink = require "blink.cmp"
 
-cmp.setup({
-  snippet = {
-    -- REQUIRED - you must specify a snippet engine
-    expand = function(args)
-      require('luasnip').lsp_expand(args.body)
-    end,
+blink.setup({
+  -- 'default' for mappings similar to built-in completion
+  -- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
+  -- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
+  -- See the full "keymap" documentation for information on defining your own keymap.
+  keymap = { preset = 'enter' },
+
+  appearance = {
+    -- Sets the fallback highlight groups to nvim-cmp's highlight groups
+    -- Useful for when your theme doesn't support blink.cmp
+    -- Will be removed in a future release
+    use_nvim_cmp_as_default = true,
+    -- Set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+    -- Adjusts spacing to ensure icons are aligned
+    nerd_font_variant = 'mono'
   },
-  window = {
-    completion = cmp.config.window.bordered(),
-    documentation = cmp.config.window.bordered(),
-  },
-  view = {
-    entries = { name = 'custom', selection_order = 'near_cursor' },
-    docs = {
-      auto_open = false,
-    }
-  },
-  formatting = {
-    fields = { "kind", "abbr", "menu" },
-    format = function(entry, vim_item)
-      if vim.tbl_contains({ 'path' }, entry.source.name) then
-        local icon, hl_group = require('nvim-web-devicons').get_icon(entry:get_completion_item().label)
-        if icon then
-          vim_item.kind = icon
-          vim_item.kind_hl_group = hl_group
-          return vim_item
-        end
-      end
 
-      local kind = require("lspkind").cmp_format({ mode = "symbol" })(entry, vim_item)
-      kind.kind = " " .. (kind.kind or "") .. " "
-
-      return kind
-    end
-  },
-  mapping = cmp.mapping.preset.insert({
-    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.abort(),
-    ['<C-d>'] = function()
-      if cmp.visible_docs() then
-        cmp.close_docs()
-      else
-        cmp.open_docs()
-      end
-    end,
-    ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-  }),
-  sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
-    { name = 'async_path' }
-  }, {
-    { name = 'buffer' },
-  })
-})
-
--- Set configuration for specific filetype.
-cmp.setup.filetype('gitcommit', {
-  sources = cmp.config.sources({
-    { name = 'git' }, -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
-  }, {
-    { name = 'buffer' },
-  })
-})
-
--- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline({ '/', '?' }, {
-  mapping = cmp.mapping.preset.cmdline(),
+  -- Default list of enabled providers defined so that you can extend it
+  -- elsewhere in your config, without redefining it, due to `opts_extend`
   sources = {
-    { name = 'buffer' }
-  }
-})
-
--- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline(':', {
-  mapping = cmp.mapping.preset.cmdline(),
-  sources = cmp.config.sources({
-    { name = 'path' }
-  }, {
-    {
-      name = 'cmdline',
-      option = {
-        ignore_cmds = { 'Man', '!' }
-      }
-    }
-  })
+    default = { 'lsp', 'path', 'snippets', 'buffer' },
+  },
 })

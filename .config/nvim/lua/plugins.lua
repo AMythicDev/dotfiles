@@ -142,35 +142,11 @@ local packages = {
   },
 
   {
-    "hrsh7th/nvim-cmp",
+    'saghen/blink.cmp',
+    version = "*",
     config = function() require "plugins.completion" end,
     event = "InsertEnter",
     dependencies = { "nvim-web-devicons", "lspkind.nvim" }
-  },
-
-  {
-    "L3MON4D3/LuaSnip",
-    build = "make install_jsregexp",
-    config = function() require "plugins.snippets" end,
-    event = "InsertEnter",
-    dependencies = { "rafamadriz/friendly-snippets" }
-  },
-
-  {
-    'saadparwaiz1/cmp_luasnip',
-    dependencies = "LuaSnip",
-    event = "InsertEnter",
-  },
-
-  {
-    "hrsh7th/cmp-nvim-lsp",
-    dependencies = "nvim-lspconfig",
-    event = "LspAttach",
-  },
-
-  {
-    "hrsh7th/cmp-buffer",
-    event = "InsertEnter",
   },
 
   {
@@ -192,32 +168,6 @@ local packages = {
       whitespace = { highlight = { "Normal" } }
     },
     event = "BufRead",
-  },
-
-  {
-    "FelipeLema/cmp-async-path",
-    lazy = true,
-  },
-
-  {
-    "hrsh7th/cmp-nvim-lsp-signature-help",
-    event = "LspAttach",
-  },
-
-  {
-    "hrsh7th/cmp-cmdline",
-    keys = { ":" }
-  },
-
-  { "hrsh7th/cmp-path", lazy = true },
-
-  {
-    "petertriho/cmp-git",
-    dependencies = "plenary.nvim",
-    config = function()
-      require "cmp_git".setup {}
-    end,
-    ft = "gitcommit",
   },
 
   {

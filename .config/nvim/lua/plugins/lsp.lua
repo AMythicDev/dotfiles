@@ -1,5 +1,4 @@
 local lspconfig = require('lspconfig')
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 require("neodev").setup()
 require "mason".setup()
@@ -9,7 +8,7 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   group = vim.api.nvim_create_augroup("Ad/LSPFormat", { clear = true }),
   callback = function()
     local filter = { bufnr = vim.api.nvim_get_current_buf() }
-    local client = vim.lsp.get_active_clients(filter)[1]
+    local client = vim.lsp.get_clients(filter)[1]
     if client and client.server_capabilities['documentFormattingProvider'] then
       vim.lsp.buf.format()
     end
@@ -31,6 +30,8 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 --     end
 --   end
 -- })
+
+local capabilities = require('blink.cmp').get_lsp_capabilities();
 
 require "mason-lspconfig".setup_handlers({
   function(server_name)
@@ -69,10 +70,4 @@ require "mason-lspconfig".setup_handlers({
       }
     }
   end,
-
-  ["zls"] = function()
-    lspconfig.zls.setup {
-      capabilities = capabilities,
-    }
-  end
 })
