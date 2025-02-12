@@ -116,4 +116,7 @@ export VISUAL=nvim
 
 # zoxide
 eval "$(zoxide init zsh)"
-export PATH=$PATH:$HOME/.local/bin:/home/arijit/.zigverm/bin
+export PATH=$PATH:$HOME/.local/bin:/home/arijit/.zigverm/bin:/home/arijit/flutter/bin
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools

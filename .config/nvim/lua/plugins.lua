@@ -19,7 +19,8 @@ local packages = {
     branch = "0.1.x",
     dependencies = { 'nvim-lua/plenary.nvim', "telescope-fzf-native.nvim" },
     lazy = true,
-    config = function() require "plugins.telescope_conf" end,
+    config = function() require "plugins.telescope" end,
+    cmd = { "Telescope" }
   },
 
   {
@@ -71,7 +72,7 @@ local packages = {
   },
 
   {
-    "folke/neodev.nvim",
+    "folke/lazydev.nvim",
     ft = "lua",
     opts = {},
   },
@@ -103,9 +104,7 @@ local packages = {
   {
     'linrongbin16/lsp-progress.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
-    config = function()
-      require('lsp-progress').setup()
-    end,
+    opts = {},
     lazy = true,
   },
 
@@ -302,6 +301,18 @@ local packages = {
     config = function() require "plugins.mini" end,
   },
 
+  {
+    'nvim-flutter/flutter-tools.nvim',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'stevearc/dressing.nvim', -- optional for vim.ui.select
+    },
+    config = function()
+      require("flutter-tools").setup {}
+      require "telescope".load_extension("flutter")
+    end,
+    ft = "dart"
+  }
 }
 
 require "lazy".setup(packages)

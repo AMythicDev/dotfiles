@@ -1,6 +1,5 @@
 local lspconfig = require('lspconfig')
 
-require("neodev").setup()
 require "mason".setup()
 require "mason-lspconfig".setup()
 
@@ -14,22 +13,6 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     end
   end,
 })
-
--- vim.api.nvim_create_autocmd({ "BufWritePost" }, {
---   group = vim.api.nvim_create_augroup("Ad/Diagnostics", { clear = true }),
---   callback = function()
---     local current_win = vim.api.nvim_get_current_win()
---
---     local trouble = require "trouble"
---
---     if vim.tbl_isempty(vim.diagnostic.get()) then
---       trouble.close()
---     else
---       trouble.open()
---       vim.api.nvim_set_current_win(current_win)
---     end
---   end
--- })
 
 local capabilities = require('blink.cmp').get_lsp_capabilities();
 
@@ -71,3 +54,7 @@ require "mason-lspconfig".setup_handlers({
     }
   end,
 })
+
+require 'lspconfig'.dartls.setup {
+  cmd = { "dart", 'language-server', '--protocol=lsp' },
+}
