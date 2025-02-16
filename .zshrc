@@ -65,9 +65,6 @@ zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$$HOME/.local/bin:$BUN_INSTALL/bin:$HOME/.cargo/bin:$PATH"
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
@@ -108,15 +105,8 @@ alias ls=eza
 # https://gist.github.com/arijit79/c43552d9e54afc65b82d0e5663649b0c
 alias zj=~/projects/zellij-attacher
 
-export EDITOR=nvim
-export VISUAL=nvim
-
 # bun completions
 [ -s "/home/arijit/.oh-my-zsh/completions/_bun" ] && source "/home/arijit/.oh-my-zsh/completions/_bun"
 
 # zoxide
 eval "$(zoxide init zsh)"
-export PATH=$PATH:$HOME/.local/bin:/home/arijit/.zigverm/bin:/home/arijit/flutter/bin
-export ANDROID_HOME=$HOME/Android/Sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/platform-tools
