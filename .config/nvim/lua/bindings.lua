@@ -11,7 +11,7 @@ local mappings = {
   { "<leader>f",       function() require "telescope.builtin".current_buffer_fuzzy_find() end,     desc = "Find" },
   { "<leader>q",       wrap_cmd("quit"),                                                           desc = "Quit" },
   { "<leader>Q",       wrap_cmd("quitall!"),                                                       desc = "Quit nvim" },
-  { "<leader>L",       wrap_cmd("Lazy"),                                                           desc = "Lazy" },
+  { "<leader>L",       function() require "lazy".home() end,                                       desc = "Lazy" },
   { "<leader>s",       wrap_cmd("write"),                                                          desc = "save" },
   { "<leader>e",       function() require "nvim-tree.api".tree.toggle() end,                       desc = "File Explorer" },
   { "<leader>w",       proxy = "<c-w>",                                                            group = "windows" },

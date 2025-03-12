@@ -32,25 +32,30 @@ layout {
       }
     }
 
-  tab name="nvim" {
-    pane {
-      borderless true
-      command "nvim"
+    new_tab_template {
+      pane borderless=true
+      statusbar size=1
     }
-    statusbar size=1
-  }
 
-  tab name="terminal" focus=true {
-    pane
-    statusbar size=1
-  }
-
-  tab name="lazygit" {
-    pane {
-      borderless true
-      command "lazygit"
+    tab name="nvim" {
+      pane {
+        borderless true
+        command "nvim"
+      }
+      statusbar size=1
     }
-    statusbar size=1
-  }
+
+    tab name="terminal" focus=true {
+      pane
+      statusbar size=1
+    }
+
+    tab name="lazygit" {
+      pane {
+        borderless true
+        command "lazygit"
+      }
+      statusbar size=1
+    }
 }
 

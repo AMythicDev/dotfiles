@@ -58,6 +58,7 @@ local packages = {
     "ThePrimeagen/harpoon",
     branch = "harpoon2",
     dependencies = { "nvim-lua/plenary.nvim" },
+    lazy = true,
     opts = {
       settings = {
         save_on_toggle = false,
@@ -144,7 +145,8 @@ local packages = {
     'saghen/blink.cmp',
     version = "*",
     config = function() require "plugins.completion" end,
-    event = "InsertEnter",
+    event = { "InsertEnter", "CmdlineEnter" },
+    key = { "/", "?" },
     dependencies = { "nvim-web-devicons", "lspkind.nvim" }
   },
 
@@ -203,7 +205,6 @@ local packages = {
 
   {
     "folke/flash.nvim",
-    event = "VeryLazy",
     opts = {
       search = {
         exclude = {
