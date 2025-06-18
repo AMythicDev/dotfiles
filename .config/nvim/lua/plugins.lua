@@ -8,10 +8,13 @@ local packages = {
   },
 
   {
-    "EdenEast/nightfox.nvim",
-    config = function()
-      vim.cmd("colorscheme carbonfox")
-    end
+    "tiagovla/tokyodark.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function(_, opts)
+      require("tokyodark").setup(opts) -- calling setup is optional
+      vim.cmd [[colorscheme tokyodark]]
+    end,
   },
 
   {
@@ -326,6 +329,20 @@ local packages = {
       "neovim/nvim-lspconfig",         -- optional
     },
     opts = {}                          -- your configuration
+  },
+
+  {
+    "kawre/leetcode.nvim",
+    build = ":TSUpdate html",
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+    },
+    cmd = "Leet",
+    opts = {
+      lang = "cpp",
+    },
   }
 }
 

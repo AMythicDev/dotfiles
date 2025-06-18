@@ -31,6 +31,7 @@ local mappings = {
   { "<leader>h5",      function() require("harpoon"):list():select(5) end,                         desc = "Buffer 5" },
   { "<leader>he",      function() functions.harpoon_menu() end,                                    desc = "Show harpoon" },
   { "<leader>l",       group = "lsp", },
+  { "<leader>la",      vim.lsp.buf.code_action,                                                    desc = "Code Actions" },
   { "<leader>ld",      function() require "telescope.builtin".lsp_definitions() end,               desc = "Go to definition" },
   { "<leader>lD",      vim.lsp.buf.declaration,                                                    desc = "Go to declaration" },
   { "<leader>lr",      wrap_cmd("Lspsaga rename ++project"),                                       desc = "Rename symbol" },
@@ -80,5 +81,7 @@ vim.api.nvim_set_keymap("n", "X", "\"_d", { noremap = true, silent = true, desc 
 
 vim.api.nvim_set_keymap("n", "<c-h>", "^", { noremap = true, silent = true, desc = "Go to beginning" })
 vim.api.nvim_set_keymap("n", "<c-l>", "$", { noremap = true, silent = true, desc = "Go to end" })
+
+vim.keymap.set("v", "<leader>la", vim.lsp.buf.code_action, { desc = "Code Actions" })
 
 wk.add(mappings)

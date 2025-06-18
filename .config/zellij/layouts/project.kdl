@@ -1,7 +1,7 @@
 layout {
     pane_template name="statusbar" borderless=true {
       plugin location="file:/home/arijit/.config/zellij/plugins/zjstatus.wasm" {
-        format_left   "{mode}#[fg=#02cf24]#[bg=#02cf24,fg=#ffffff,bold] {session} #[fg=#02cf24]"
+        format_left   "{mode}#[fg=green]#[bg=green,fg=#ffffff,bold] {session} #[fg=green]"
         format_center "{tabs}"
         format_right  "{command_git_branch} {datetime}"
         format_space  ""
@@ -13,20 +13,20 @@ layout {
 
         hide_frame_for_single_pane "true"
 
-        mode_normal        "#[bg=#609cfc,fg=#ffffff] {name}#[fg=#609cfc]"
-        mode_locked        "#[bg=#f71665,fg=#ffffff] {name}#[fg=#f71665]"
-        mode_resize        "#[bg=#04ccae,fg=#ffffff] {name}#[fg=#04ccae]"
+        mode_normal        "#[bg=blue,fg=#ffffff] {name} #[fg=blue]"
+        mode_locked        "#[bg=red,fg=#ffffff] {name} #[fg=red]"
+        mode_resize        "#[bg=cyan,fg=#ffffff] {name} #[fg=cyan]"
         mode_default_to_mode "resize"
 
-        tab_normal   "#[fg=#6C7086] {name} "
-        tab_active   "#[fg=#609cfc]#[fg=#ffffff,bg=#609cfc,bold,italic]{name}#[fg=#609cfc]"
+        tab_normal   "#[fg=magenta] {name} "
+        tab_active   "#[fg=blue]#[fg=#ffffff,bg=blue,bold,italic]{name}#[fg=blue]"
 
         command_git_branch_command     "git rev-parse --abbrev-ref HEAD"
         command_git_branch_format      "#[fg=blue] {stdout} "
         command_git_branch_interval    "10"
         command_git_branch_rendermode  "static"
 
-        datetime        "#[fg=#6C7086,bold] {format} "
+        datetime        "#[fg=magenta,bold] {format} "
         datetime_format "%A, %d %b %Y %H:%M"
         datetime_timezone "Asia/Kolkata"
       }

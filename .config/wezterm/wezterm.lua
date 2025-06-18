@@ -1,9 +1,22 @@
 local wezterm = require "wezterm"
-local action = wezterm.action;
+local action = wezterm.action
+local mux = wezterm.mux
 
-local config = {}
-config.font = wezterm.font "Iosevka Nerd Font Mono"
-config.color_scheme = 'Tokyo Night'
+wezterm.on('gui-attached', function(_)
+  local workspace = mux.get_active_workspace()
+  for _, window in ipairs(mux.all_windows()) do
+    wezterm.log_info(window)
+    if window:get_workspace() == workspace then
+      window:gui_window():maximize()
+    end
+  end
+end)
+
+local config = wezterm.config_builder()
+config.font = wezterm.font "JetBrainsMono Nerd Font"
+
+config.color_scheme_dirs = { '/home/arijit/.config/wezterm/colors/' }
+config.color_scheme = 'Tokyo Dark'
 config.hide_tab_bar_if_only_one_tab = true
 
 config.window_padding = {
