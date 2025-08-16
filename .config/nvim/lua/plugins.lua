@@ -160,12 +160,6 @@ local packages = {
   },
 
   {
-    "max397574/better-escape.nvim",
-    opts = true,
-    event = "InsertEnter",
-  },
-
-  {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
     opts = {

@@ -4,7 +4,7 @@ require "mason".setup()
 require "mason-lspconfig".setup()
 
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-  group = vim.api.nvim_create_augroup("Ad/LSPFormat", { clear = true }),
+  group = vim.api.nvim_create_augroup("AMythicDev/LSPFormat", { clear = true }),
   callback = function()
     local filter = { bufnr = vim.api.nvim_get_current_buf() }
     local client = vim.lsp.get_clients(filter)[1]
@@ -15,6 +15,33 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 })
 
 local capabilities = require('blink.cmp').get_lsp_capabilities();
+
+local vtls_path = vim.fn.expand '$MASON/packages' .. '/vue-language-server' .. '/node_modules/@vue/language-server'
+local vue_plugin = {
+  name = '@vue/typescript-plugin',
+  location = vtls_path,
+  languages = { 'vue' },
+  configNamespace = 'typescript',
+}
+
+local vtsls_config = {
+  settings = {
+    vtsls = {
+      tsserver = {
+        globalPlugins = {
+          vue_plugin,
+        },
+      },
+    },
+  },
+  filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
+}
+
+local vue_ls_config = {}
+
+vim.lsp.config('vtsls', vtsls_config)
+vim.lsp.config('vue_ls', vue_ls_config)
+vim.lsp.enable({ 'vtsls', 'vue_ls' })
 
 require "mason-lspconfig".setup({
   function(server_name)
