@@ -1,6 +1,7 @@
 { config, pkgs, nixgl, ... }:
 
-let wGL = config.lib.nixGL.wrap; mkOutOfStoreSymlink = config.lib.file.mkOutOfStoreSymlink; in {
+let wGL = config.lib.nixGL.wrap; mkOutOfStoreSymlink = config.lib.file.mkOutOfStoreSymlink; 
+in rec {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "arijit";
@@ -20,28 +21,32 @@ let wGL = config.lib.nixGL.wrap; mkOutOfStoreSymlink = config.lib.file.mkOutOfSt
   home.packages = [
     pkgs.pnpm
     pkgs.typst
+    pkgs.scc
     # pkgs.flutter
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
-  home.file = {
+  home.file = let
+    removePrefix = pkgs.lib.strings.removePrefix;
+    home-manager-dir = "${home.homeDirectory}/.config/home-manager";
+  in {
     ".config/alacritty".source = ./.config/alacritty;
     ".config/dunst".source = ./.config/dunst;
     ".config/eww".source = ./.config/eww;
     ".config/fish".source = ./.config/fish;
     ".config/hypr".source = ./.config/hypr;
     ".config/kitty".source = ./.config/kitty;
-    ".config/nvim".source = mkOutOfStoreSymlink ./.config/nvim;
+    ".config/nvim".source = mkOutOfStoreSymlink home-manager-dir + "/.config/nvim";
     ".config/waybar".source = ./.config/waybar;
-    ".config/wezterm".source = ./.config/wezterm;
+    ".config/wezterm".source = mkOutOfStoreSymlink home-manager-dir + "/.config/wezterm";
     ".config/wlogout".source = ./.config/wlogout;
     ".config/wofi".source = ./.config/wofi;
-    ".config/zed".source = mkOutOfStoreSymlink ./.config/wlogout;
+    ".config/zed".source = mkOutOfStoreSymlink home-manager-dir + "/.config/zed";
     ".config/zellij".source = ./.config/zellij;
     ".config/starship.toml".source = ./.config/starship.toml;
-    ".zshenv".source = mkOutOfStoreSymlink ./.zshenv;
-    ".zshrc".source = mkOutOfStoreSymlink ./.zshrc;
+    ".zshenv".source = mkOutOfStoreSymlink home-manager-dir + "/.zshenv";
+    ".zshrc".source = mkOutOfStoreSymlink home-manager-dir + "/.zshrc";
   };
 
   # Home Manager can also manage your environment variables through

@@ -18,6 +18,7 @@ config.font = wezterm.font "JetBrainsMono Nerd Font"
 config.color_scheme_dirs = { '/home/arijit/.config/wezterm/colors/' }
 config.color_scheme = 'Tokyo Dark'
 config.hide_tab_bar_if_only_one_tab = true
+config.line_height = 1.2
 
 config.window_padding = {
   left = 0,
