@@ -13,6 +13,8 @@ vim.opt.expandtab = true
 vim.opt.cursorline = true
 vim.opt.cursorlineopt = "number"
 vim.g.zig_fmt_autosave = 0
+vim.o.splitright = true
+vim.o.splitbelow = false
 
 vim.api.nvim_create_augroup("AMythicDev/nvim", { clear = true })
 vim.api.nvim_create_autocmd("BufEnter", {

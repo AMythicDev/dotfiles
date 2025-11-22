@@ -2,12 +2,6 @@ local packages = {
   { "folke/lazy.nvim" },
 
   {
-    "lewis6991/impatient.nvim",
-    lazy = false,
-    priority = 1000,
-  },
-
-  {
     "tiagovla/tokyodark.nvim",
     lazy = false,
     priority = 1000,
@@ -15,21 +9,6 @@ local packages = {
       require("tokyodark").setup(opts) -- calling setup is optional
       vim.cmd [[colorscheme tokyodark]]
     end,
-  },
-
-  {
-    'nvim-telescope/telescope.nvim',
-    branch = "0.1.x",
-    dependencies = { 'nvim-lua/plenary.nvim', "telescope-fzf-native.nvim" },
-    lazy = true,
-    config = function() require "plugins.telescope" end,
-    cmd = { "Telescope" }
-  },
-
-  {
-    'nvim-telescope/telescope-fzf-native.nvim',
-    lazy = true,
-    build = 'make',
   },
 
   {
@@ -272,11 +251,6 @@ local packages = {
   },
 
   {
-    "williamboman/mason-lspconfig.nvim",
-    lazy = true
-  },
-
-  {
     "norcalli/nvim-colorizer.lua",
     ft = { "html", "css", "vue", "javascript" },
     config = function()
@@ -305,10 +279,7 @@ local packages = {
       'nvim-lua/plenary.nvim',
       'stevearc/dressing.nvim', -- optional for vim.ui.select
     },
-    config = function()
-      require("flutter-tools").setup {}
-      require "telescope".load_extension("flutter")
-    end,
+    opts = {},
     ft = "dart"
   },
 
@@ -319,17 +290,15 @@ local packages = {
     ft = { "html", "css", "astro", "jsx", "tsx", "svelte", "vue" },
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
-      "nvim-telescope/telescope.nvim", -- optional
-      "neovim/nvim-lspconfig",         -- optional
+      "neovim/nvim-lspconfig", -- optional
     },
-    opts = {}                          -- your configuration
+    opts = {}                  -- your configuration
   },
 
   {
     "kawre/leetcode.nvim",
     build = ":TSUpdate html",
     dependencies = {
-      "nvim-telescope/telescope.nvim",
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
     },
@@ -337,7 +306,62 @@ local packages = {
     opts = {
       lang = "cpp",
     },
-  }
+  },
+
+  {
+    "olimorris/codecompanion.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    opts = {
+      display = {
+        chat = {
+          window = {
+            width = 0.3,
+          }
+        }
+      },
+      strategies = {
+        chat = {
+          adapter = "gemini",
+        }
+      },
+      opts = {
+        log_level = "DEBUG",
+      },
+      adapters = {
+        acp = {
+          gemini_cli = function()
+            return require("codecompanion.adapters").extend("gemini_cli", {
+              defaults = {
+                auth_method = "gemini-api-key",
+              },
+            })
+          end,
+        },
+        http = {
+          gemini = function()
+            return require("codecompanion.adapters").extend("gemini", {
+              env = {
+                api_key = vim.env.GEMINI_API_KEY
+              },
+              schema = { model = { default = "gemini-2.5-pro" } }
+            })
+          end
+        }
+      },
+    }
+  },
+
+  {
+    "folke/snacks.nvim",
+    opts = {
+      picker = {
+      }
+    },
+    lazy = true,
+  },
 }
 
 require "lazy".setup(packages)
