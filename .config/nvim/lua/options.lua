@@ -24,10 +24,19 @@ vim.api.nvim_create_autocmd("BufEnter", {
     vim.cmd [[set colorcolumn=80]]
   end
 })
+
 vim.api.nvim_create_autocmd("BufEnter", {
   pattern = "*.rs",
   group = "AMythicDev/nvim",
   callback = function()
     vim.cmd [[set colorcolumn=100]]
+  end
+})
+
+vim.api.nvim_create_autocmd("BufWinEnter", {
+  pattern = "\\[CodeCompanion\\] *",
+  group = "AMythicDev/nvim",
+  callback = function(ev)
+    vim.wo.winfixwidth = true
   end
 })

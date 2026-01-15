@@ -2,22 +2,20 @@ require "mason"
 local capabilities = require('blink.cmp').get_lsp_capabilities();
 
 local ENABLED_LSPS = {
-  "astro-language-server",
-  "black",
-  "clang-format",
+  "astro",
   "clangd",
   "gopls",
-  "json-lsp",
-  "lua-language-server",
+  "jsonls",
+  "lua_ls",
   "mesonlsp",
-  "python-lsp-server",
+  "basedpyright",
   "ruff",
-  "rust-analyzer",
-  "svelte-language-server",
-  "tailwindcss-language-server",
-  "typescript-language-server",
+  "rust_analyzer",
+  "svelte",
+  "tailwindcss",
+  "ts_ls",
   "vtsls",
-  "vue-language-server",
+  "vtsls",
   "zls",
 }
 

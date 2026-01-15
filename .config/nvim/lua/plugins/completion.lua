@@ -5,7 +5,11 @@ blink.setup({
   -- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
   -- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
   -- See the full "keymap" documentation for information on defining your own keymap.
-  keymap = { preset = 'enter' },
+  keymap = {
+    -- set to 'none' to disable the 'default' preset
+    preset = 'default',
+    ["<CR>"] = { "accept", "fallback" }
+  },
 
   appearance = {
     -- Sets the fallback highlight groups to nvim-cmp's highlight groups
@@ -28,13 +32,22 @@ blink.setup({
         -- make lazydev completions top priority (see `:h blink.cmp`)
         score_offset = 100,
       },
+      cmdline = {
+        min_keyword_length = function(ctx)
+          -- when typing a command, only show when the keyword is 3 characters or longer
+          if ctx.mode == 'cmdline' and string.find(ctx.line, ' ') == nil then return 3 end
+          return 0
+        end
+      }
     },
   },
 
   cmdline = {
     keymap = {
       -- recommended, as the default keymap will only show and select the next item
-      ['<Tab>'] = { 'show', 'accept' },
+      keymap = { preset = 'inherit' },
+      ["<Up>"] = { "select_prev", "fallback" },
+      ["<Down>"] = { "select_next", "fallback" },
     },
     completion = { menu = { auto_show = true } },
   },

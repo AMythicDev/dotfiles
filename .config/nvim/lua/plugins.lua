@@ -1,14 +1,17 @@
 local packages = {
   { "folke/lazy.nvim" },
 
+  -- Lazy
   {
-    "tiagovla/tokyodark.nvim",
-    lazy = false,
+    "navarasu/onedark.nvim",
     priority = 1000,
-    config = function(_, opts)
-      require("tokyodark").setup(opts) -- calling setup is optional
-      vim.cmd [[colorscheme tokyodark]]
-    end,
+    config = function()
+      require('onedark').setup {
+        style = 'deep'
+      }
+      require('onedark').load()
+      vim.cmd [[colorscheme onedark]]
+    end
   },
 
   {
@@ -284,18 +287,6 @@ local packages = {
   },
 
   {
-    "luckasRanarison/tailwind-tools.nvim",
-    name = "tailwind-tools",
-    build = ":UpdateRemotePlugins",
-    ft = { "html", "css", "astro", "jsx", "tsx", "svelte", "vue" },
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      "neovim/nvim-lspconfig", -- optional
-    },
-    opts = {}                  -- your configuration
-  },
-
-  {
     "kawre/leetcode.nvim",
     build = ":TSUpdate html",
     dependencies = {
@@ -314,6 +305,7 @@ local packages = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
     },
+    cmd = { "CodeCompanion", "CodeCompanionChat", "CodeCompanionCmd", "CodeCompanionActions" },
     opts = {
       display = {
         chat = {
@@ -322,9 +314,9 @@ local packages = {
           }
         }
       },
-      strategies = {
+      interactions = {
         chat = {
-          adapter = "gemini",
+          adapter = "gemini_cli",
         }
       },
       opts = {
@@ -333,23 +325,12 @@ local packages = {
       adapters = {
         acp = {
           gemini_cli = function()
-            return require("codecompanion.adapters").extend("gemini_cli", {
-              defaults = {
-                auth_method = "gemini-api-key",
-              },
-            })
+            return require("codecompanion.adapters").extend("gemini_cli", {})
+          end,
+          claude_code = function()
+            return require("codecompanion.adapters").extend("claude_code", {})
           end,
         },
-        http = {
-          gemini = function()
-            return require("codecompanion.adapters").extend("gemini", {
-              env = {
-                api_key = vim.env.GEMINI_API_KEY
-              },
-              schema = { model = { default = "gemini-2.5-pro" } }
-            })
-          end
-        }
       },
     }
   },
@@ -357,11 +338,32 @@ local packages = {
   {
     "folke/snacks.nvim",
     opts = {
-      picker = {
-      }
+      picker = { enabled = true },
+      input = { enabled = true },
     },
     lazy = true,
   },
+
+  {
+    "folke/noice.nvim",
+    keys = { ":", "/", "?" },
+    opts = {
+      cmdline = {
+        enabled = true,
+        opts = {
+          position = { row = "10%", col = "50%" }
+        }
+      }
+    },
+    dependencies = {
+      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+      "MunifTanjim/nui.nvim",
+      -- OPTIONAL:
+      --   `nvim-notify` is only needed, if you want to use the notification view.
+      --   If not available, we use `mini` as the fallback
+      "rcarriga/nvim-notify",
+    }
+  }
 }
 
 require "lazy".setup(packages)
