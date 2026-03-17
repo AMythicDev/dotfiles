@@ -13,12 +13,20 @@ wezterm.on('gui-attached', function(_)
 end)
 
 local config = wezterm.config_builder()
+
 config.font = wezterm.font "JetBrainsMono Nerd Font"
 
+config.window_background_opacity = 0.8
 config.color_scheme_dirs = { '/home/arijit/.config/wezterm/colors/' }
-config.color_scheme = 'Tokyo Dark'
+config.color_scheme = 'Rudv'
 config.hide_tab_bar_if_only_one_tab = true
-config.line_height = 1.2
+config.line_height = 1.3
+config.font_size = 11
+config.alternate_buffer_wheel_scroll_speed = 1
+config.default_cursor_style = "SteadyBar"
+config.keys = {
+  { key = "Enter", mods = "SHIFT", action = wezterm.action { SendString = "\x1b\r" } },
+}
 
 config.window_padding = {
   left = 0,
@@ -33,12 +41,12 @@ config.mouse_bindings = {
   {
     event = { Down = { streak = 1, button = { WheelUp = 1 } } },
     mods = 'NONE',
-    action = action.ScrollByLine(-5),
+    action = action.ScrollByLine(-3),
   },
   {
     event = { Down = { streak = 1, button = { WheelDown = 1 } } },
     mods = 'NONE',
-    action = action.ScrollByLine(5),
+    action = action.ScrollByLine(3),
   },
 }
 

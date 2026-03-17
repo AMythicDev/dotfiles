@@ -15,7 +15,6 @@ local ENABLED_LSPS = {
   "tailwindcss",
   "ts_ls",
   "vtsls",
-  "vtsls",
   "zls",
 }
 

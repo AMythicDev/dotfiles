@@ -1,0 +1,25 @@
+[colors]
+background = "#0c0e16"
+foreground = "#ABB2BF"
+
+ansi = [
+  "#32363D", # black
+  "#E06B74", # red
+  "#98C379", # green
+  "#E5C07A", # yellow
+  "#62AEEF", # blue
+  "#C778DD", # magenta
+  "#55B6C2", # cyan
+  "#ABB2BF", # white
+]
+
+brights = [
+  "#50545B", # black
+  "#EA757E", # red
+  "#A2CD83", # green
+  "#EFCA84", # yellow
+  "#6CB8F9", # blue
+  "#D282E7", # magenta
+  "#5FC0CC", # cyan
+  "#B5BCC9", # white
+]

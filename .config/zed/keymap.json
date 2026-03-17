@@ -10,22 +10,22 @@
     "context": "Editor && VimControl",
     "bindings": {
       "space s": "workspace::Save",
-      "space e": "workspace::ToggleLeftDock",
       "space l f": "editor::Format",
       "space l d": "editor::GoToDefinition",
       "space l r": "editor::Rename",
       "space space": "file_finder::Toggle",
       "space ]": "pane::ActivateNextItem",
-      "space [": "pane::ActivatePrevItem",
+      "space [": "pane::ActivatePreviousItem",
       "space /": "vim::ToggleComments",
       "space t": "workspace::ToggleBottomDock",
-      "space q": "pane::CloseActiveItem"
+      "space q": "pane::CloseActiveItem",
     }
   },
   {
-    "context": "ProjectPanel",
+    "context": "Workspace",
     "bindings": {
-      "space e": "workspace::ToggleLeftDock"
+      "space e": "workspace::ToggleLeftDock",
+      "space l": "workspace::ToggleRightDock",
     }
   },
   {

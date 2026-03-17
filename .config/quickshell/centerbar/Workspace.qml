@@ -1,0 +1,58 @@
+import QtQuick
+import QtQuick.Layouts
+import Quickshell
+import Quickshell.Hyprland
+
+Item {
+    implicitWidth: workspaceRow.width + 20
+    implicitHeight: 45
+
+    Rectangle {
+        anchors.left: parent.left
+        anchors.right: parent.right
+        height: 30
+        anchors.verticalCenter: parent.verticalCenter
+        
+        color: "#0c0e16"
+        border.color: "#1d1d2c"
+        border.width: 1.2
+        radius: 15
+    }
+
+    Row {
+        id: workspaceRow
+        anchors.centerIn: parent
+        spacing: 10
+        padding: 10
+
+        Repeater {
+            model: Hyprland.workspaces
+            delegate: Rectangle {
+                width: 30
+                height: 30
+                color: "transparent"
+
+                Rectangle {
+                    id: indicator
+                    anchors.centerIn: parent
+                    
+                    width: modelData.focused ? 25 : 12
+                    height: 12
+                    radius: 8
+                    
+                    property bool hasWindows: modelData.toplevels.values.length > 0
+
+                    color: modelData.focused ? "#ffffff" : (hasWindows ? "#c0caf5" : "#414868")
+
+                    Behavior on width { NumberAnimation { duration: 150 } }
+                    Behavior on color { ColorAnimation { duration: 150 } }
+                }
+
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: modelData.activate()
+                }
+            }
+        }
+    }
+}

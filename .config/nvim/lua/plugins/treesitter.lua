@@ -1,16 +1,13 @@
-require "nvim-treesitter.configs".setup {
-  ensure_installed = { "bash", "lua", "markdown", "markdown_inline", "regex", "rust", "vim", "vimdoc" },
-  auto_install = false,
-
-  highlight = {
-    enable = true
-  },
-
-  indent = {
-    enable = true
-  },
-
-  incremental_selection = {
-    enable = true
-  }
+require('nvim-treesitter').setup {
+  -- Directory to install parsers and queries to (prepended to `runtimepath` to have priority)
+  install_dir = vim.fn.stdpath('data') .. '/site'
 }
+
+require('nvim-treesitter').install { "bash", "lua", "markdown", "markdown_inline", "regex", "rust", "vim", "vimdoc" }
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { '<filetype>' },
+  callback = function() vim.treesitter.start() end,
+})
+
+vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"

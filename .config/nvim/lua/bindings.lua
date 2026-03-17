@@ -13,12 +13,13 @@ local mappings = {
   { "<leader>Q",       wrap_cmd("quitall!"),                                                              desc = "Quit nvim" },
   { "<leader>L",       function() require "lazy".home() end,                                              desc = "Lazy" },
   { "<leader>s",       wrap_cmd("write"),                                                                 desc = "save" },
-  { "<leader>e",       function() require "nvim-tree.api".tree.toggle() end,                              desc = "File Explorer" },
+  { "<leader>H",       wrap_cmd("set hlsearch!"),                                                         desc = "toggle hlsearch" },
+  { "<leader>e",       function() require "snacks".explorer.open() end,                                   desc = "File Explorer" },
   { "<leader>w",       proxy = "<c-w>",                                                                   group = "windows" },
   { "<leader>]",       wrap_cmd("bnext \"v:count1\""),                                                    desc = "Next buffer" },
   { "<leader>[",       wrap_cmd("bprevious \"v:count1\""),                                                desc = "Prev buffer" },
   { "<leader>b",       group = "buffers", },
-  { "<leader>bk",      function() require('bufdelete').bufdelete(0, true) end,                            desc = "Kill" },
+  { "<leader>bk",      function() require('snacks').bufdelete.delete() end,                               desc = "Kill" },
   { "<leader>bl",      function() require "snacks".picker.buffers() end,                                  desc = "List" },
   { "<leader>h",       group = "harpoon", },
   { "<leader>ha",      function() require("harpoon"):list():append() end,                                 desc = "Add to list" },
@@ -43,8 +44,8 @@ local mappings = {
   { "<leader>ls",      group = "symbols", },
   { "<leader>lsd",     function() require "snacks".picker.lsp_symbols() end,                              desc = "Document symbols" },
   { "<leader>lsw",     function() require "snacks".picker.lsp_workspace_symbols() end,                    desc = "Workspace symbols" },
-  { "<leader>t",       group = "treesitter" },
-  { "<leader>tt",      function() require "snacks".picker.treesitter() end,                               desc = "Treesitter picker" },
+  { "<leader>t",       function() require "snacks".terminal.toggle() end,                                 desc = "Toggle Terminal" },
+  { "<leader>ts",      function() require "snacks".terminal.open() end,                                   desc = "Split Terminal" },
 }
 
 vim.keymap.set("n", "K", wrap_cmd("Lspsaga hover_doc"), { noremap = true, silent = true, desc = "Hover Symbol" })

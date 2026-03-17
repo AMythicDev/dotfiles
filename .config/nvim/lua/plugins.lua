@@ -1,16 +1,12 @@
 local packages = {
   { "folke/lazy.nvim" },
 
-  -- Lazy
   {
-    "navarasu/onedark.nvim",
+    "folke/tokyonight.nvim",
+    lazy = false,
     priority = 1000,
-    config = function()
-      require('onedark').setup {
-        style = 'deep'
-      }
-      require('onedark').load()
-      vim.cmd [[colorscheme onedark]]
+    config = function ()
+      vim.cmd[[colorscheme tokyonight-night]]
     end
   },
 
@@ -64,11 +60,6 @@ local packages = {
   },
 
   {
-    "famiu/bufdelete.nvim",
-    lazy = true,
-  },
-
-  {
     "folke/which-key.nvim",
     init = function()
       vim.o.timeout = true
@@ -88,36 +79,9 @@ local packages = {
   },
 
   {
-    'linrongbin16/lsp-progress.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-    opts = {},
-    lazy = true,
-  },
-
-  {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
-    event = "BufReadPre",
     config = function() require "plugins.treesitter" end,
-  },
-
-  {
-    "nvim-tree/nvim-tree.lua",
-    lazy = true,
-    config = function()
-      require("nvim-tree").setup({
-        sort_by = "case_sensitive",
-        view = {
-          width = 30,
-        },
-        renderer = {
-          group_empty = true,
-        },
-        filters = {
-          dotfiles = true,
-        },
-      })
-    end,
   },
 
   {
@@ -138,30 +102,14 @@ local packages = {
   {
     "lewis6991/gitsigns.nvim",
     event = "BufRead",
-    config = true
-  },
-
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    main = "ibl",
-    opts = {
-      whitespace = { highlight = { "Normal" } }
-    },
-    event = "BufRead",
+    opts = {},
+    -- condition = false
+    enabled = false,
   },
 
   {
     "onsails/lspkind.nvim",
     lazy = true,
-  },
-
-  {
-    'rcarriga/nvim-notify',
-    event = "VeryLazy",
-    config = function()
-      vim.notify = require "notify"
-      require "notify".setup()
-    end
   },
 
   {
@@ -184,24 +132,27 @@ local packages = {
 
   {
     "folke/flash.nvim",
-    opts = {
-      search = {
-        exclude = {
-          "notify",
-          "cmp_menu",
-          "noice",
-          "flash_prompt",
-          function(win)
-            -- exclude non-focusable windows
-            return not vim.api.nvim_win_get_config(win).focusable
-          end,
-          "NvimTree",
+    config = function()
+      require "flash".setup({
+        search = {
+          exclude = {
+            "notify",
+            "cmp_menu",
+            "noice",
+            "flash_prompt",
+            function(win)
+              -- exclude non-focusable windows
+              return not vim.api.nvim_win_get_config(win).focusable
+            end,
+            "NvimTree",
+          },
         },
-      },
-      jump = {
-        autojump = true,
-      },
-    },
+        jump = {
+          autojump = true,
+        },
+      })
+      vim.api.nvim_set_hl(0, "FlashLabel", { fg = "white", bg = "bg", bold = true })
+    end,
     keys = {
       { "s",     mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
       { "S",     mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
@@ -339,9 +290,18 @@ local packages = {
     "folke/snacks.nvim",
     opts = {
       picker = { enabled = true },
-      input = { enabled = true },
+      bufdelete = { enabled = true },
+      indent = { enabled = true },
+      notifier = { enabled = true },
+      explorer = {
+        enabled = true,
+        replace_netrw = true,
+        git_status = true,
+      },
+      terminal = {
+        enabled = true,
+      }
     },
-    lazy = true,
   },
 
   {
@@ -356,14 +316,38 @@ local packages = {
       }
     },
     dependencies = {
-      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
       "MunifTanjim/nui.nvim",
-      -- OPTIONAL:
-      --   `nvim-notify` is only needed, if you want to use the notification view.
-      --   If not available, we use `mini` as the fallback
-      "rcarriga/nvim-notify",
-    }
-  }
+    },
+    event = "VeryLazy",
+  },
+
+  -- {
+  --   dir = "~/projects/ipynb.nvim",
+  --   opts = {}
+  -- },
+
+  {
+    "obsidian-nvim/obsidian.nvim",
+    version = "*", -- use latest release, remove to use latest commit
+    ft = "markdown",
+    ---@module 'obsidian'
+    ---@type obsidian.config
+    opts = {
+      legacy_commands = false, -- this will be removed in the next major release
+      workspaces = {
+        {
+          name = "The Brain",
+          path = "~/The Brain/",
+        },
+      },
+    },
+  },
+
+  {
+    "OXY2DEV/markview.nvim",
+    lazy = false,
+    dependencies = { "saghen/blink.cmp" },
+  },
 }
 
 require "lazy".setup(packages)
