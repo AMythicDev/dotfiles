@@ -13,6 +13,7 @@ local ENABLED_LSPS = {
   "rust_analyzer",
   "svelte",
   "tailwindcss",
+  "tinymist",
   "ts_ls",
   "vtsls",
   "zls",
@@ -75,6 +76,19 @@ vim.lsp.config("lua_ls", {
       completion = {
         callSnippet = "Replace"
       }
+    }
+  }
+})
+
+vim.lsp.config("basedpyright", {
+  capabilities = capabilities,
+  settings = {
+    basedpyright = {
+      analysis = {
+        autoSearchPaths = true,
+        useLibraryCodeForTypes = true,
+        autoImportCompletions = true,
+      },
     }
   }
 })

@@ -14,7 +14,8 @@ end)
 
 local config = wezterm.config_builder()
 
-config.font = wezterm.font "JetBrainsMono Nerd Font"
+config.font = wezterm.font "CaskaydiaMono Nerd Font"
+-- config.font = wezterm.font "JetBrainsMono Nerd Font"
 
 config.window_background_opacity = 0.8
 config.color_scheme_dirs = { '/home/arijit/.config/wezterm/colors/' }

@@ -4,10 +4,6 @@ import Quickshell.Wayland
 import QtQuick
 import QtQuick.Layouts
 
-import "./leftbar" as Leftbar
-import "./rightbar" as RightBar
-import "./centerbar" as CenterBar
-
 PanelWindow {
     anchors.top: true
     anchors.left: true
@@ -32,13 +28,13 @@ PanelWindow {
             spacing: 10
             z: 10
 
-            Leftbar.Arch { }
-            Leftbar.Battery { }
-            Leftbar.Clock { }
+            Arch { }
+            Battery { }
+            Clock { }
         }
 
         // Center section
-        CenterBar.Workspace { 
+        Workspace { 
             id: centerWorkspace
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
@@ -53,11 +49,11 @@ PanelWindow {
             spacing: 10
             z: 100
 
-            RightBar.SystemTray { 
+            SystemTray { 
                 z: 110
             }
 
-            RightBar.ActiveWindow { 
+            ActiveWindow { 
                 width: Math.min(implicitWidth, 300)
                 z: 100
             }
