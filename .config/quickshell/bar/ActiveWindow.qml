@@ -25,11 +25,12 @@ Item {
             
             // Checks if the globally active toplevel is on the currently focused workspace.
             // This prevents showing titles of windows that are on other workspaces.
-            text: (Hyprland.activeToplevel && 
-                   Hyprland.activeToplevel.workspace && 
-                   Hyprland.activeToplevel.workspace.focused) 
-                   ? Hyprland.activeToplevel.title 
-                   : "Desktop"
+            text: {
+                if (!Hyprland.activeToplevel) return "Desktop";
+                var ws = Hyprland.activeToplevel.workspace;
+                if (!ws) return "Desktop";
+                return ws.focused ? Hyprland.activeToplevel.title : "Desktop";
+            }
             
             color: "#c0caf5"
             font.family: "JetBrainsMono Nerd Font"

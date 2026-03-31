@@ -26,23 +26,30 @@ Item {
         padding: 10
 
         Repeater {
-            model: Hyprland.workspaces
+            model: 10
             delegate: Rectangle {
+                id: wsDelegate
                 width: 30
                 height: 30
                 color: "transparent"
+
+                property int wsId: modelData + 1
+                property var ws: Hyprland.workspaces.values.find(w => w.id === wsId)
+                property bool isFocused: ws ? ws.focused : (Hyprland.focusedWorkspace && Hyprland.focusedWorkspace.id === wsId)
+                
+                visible: ws || isFocused
 
                 Rectangle {
                     id: indicator
                     anchors.centerIn: parent
                     
-                    width: modelData.focused ? 25 : 12
+                    width: isFocused ? 25 : 12
                     height: 12
                     radius: 8
                     
-                    property bool hasWindows: modelData.toplevels.values.length > 0
+                    property bool hasWindows: ws ? ws.toplevels.values.length > 0 : false
 
-                    color: modelData.focused ? "#ffffff" : (hasWindows ? "#c0caf5" : "#414868")
+                    color: isFocused ? "#ffffff" : (hasWindows ? "#c0caf5" : "#414868")
 
                     Behavior on width { NumberAnimation { duration: 150 } }
                     Behavior on color { ColorAnimation { duration: 150 } }
@@ -50,7 +57,13 @@ Item {
 
                 MouseArea {
                     anchors.fill: parent
-                    onClicked: modelData.activate()
+                    onClicked: {
+                        if (ws) {
+                            ws.activate();
+                        } else {
+                            Hyprland.dispatch("workspace " + wsId);
+                        }
+                    }
                 }
             }
         }

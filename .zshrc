@@ -50,6 +50,7 @@ setopt hist_ignore_dups
 setopt hist_find_no_dups
 setopt extendedglob
 unsetopt beep
+setopt auto_cd
 # ========================== END OF OPTIONS ===================================
 
 # ========================== START OF KEYBINDS =================================
