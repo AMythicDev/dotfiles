@@ -17,6 +17,7 @@ local ENABLED_LSPS = {
   "ts_ls",
   "vtsls",
   "zls",
+  "harper",
 }
 
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
@@ -92,5 +93,10 @@ vim.lsp.config("basedpyright", {
     }
   }
 })
+
+vim.lsp.config['harper'] = {
+  cmd = { 'harper-ls', '--stdio' },
+  filetypes = { 'markdown', 'text', 'tex', 'typst' }
+}
 
 vim.lsp.enable(ENABLED_LSPS)

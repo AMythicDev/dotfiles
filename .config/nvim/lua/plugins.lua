@@ -5,34 +5,9 @@ local packages = {
     "folke/tokyonight.nvim",
     lazy = false,
     priority = 1000,
-    config = function ()
-      vim.cmd[[colorscheme tokyonight-night]]
+    config = function()
+      vim.cmd [[colorscheme tokyonight-night]]
     end
-  },
-
-  {
-    'numToStr/Comment.nvim',
-    config = true,
-    opts = {
-      toggler = {
-        ---Line-comment keymap
-        line = '<leader>/',
-        ---Block-comment keymap
-        block = '<leader>*',
-      },
-      opleader = {
-        ---Line-comment keymap
-        line = '<leader>/',
-        ---Block-comment keymap
-        block = '<leader>*',
-      },
-    },
-    keys = {
-      { "<leader>/", mode = "n" },
-      { "<leader>*", mode = "n" },
-      { "<leader>/", mode = "v" },
-      { "<leader>*", mode = "v" },
-    }
   },
 
   {
@@ -288,6 +263,8 @@ local packages = {
 
   {
     "folke/snacks.nvim",
+    priority = 1000,
+    lazy = false,
     opts = {
       picker = { enabled = true },
       bufdelete = { enabled = true },
@@ -327,27 +304,15 @@ local packages = {
   -- },
 
   {
-    "obsidian-nvim/obsidian.nvim",
-    version = "*", -- use latest release, remove to use latest commit
-    ft = "markdown",
-    ---@module 'obsidian'
-    ---@type obsidian.config
-    opts = {
-      legacy_commands = false, -- this will be removed in the next major release
-      workspaces = {
-        {
-          name = "The Brain",
-          path = "~/The Brain/",
-        },
-      },
-    },
+    'MeanderingProgrammer/render-markdown.nvim',
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.nvim' }, -- if you use the mini.nvim suite
+    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+    ---@module 'render-markdown'
+    ---@type render.md.UserConfig
+    opts = {},
+    ft = "md",
   },
 
-  {
-    "OXY2DEV/markview.nvim",
-    lazy = false,
-    dependencies = { "saghen/blink.cmp" },
-  },
 }
 
 require "lazy".setup(packages)

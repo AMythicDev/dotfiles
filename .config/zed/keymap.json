@@ -22,10 +22,22 @@
     }
   },
   {
-    "context": "Workspace",
+    "context": "vim_mode == normal",
+    "bindings": {
+      "shift-y": "vim::YankToEndOfLine",
+    }
+  },
+  {
+    "context": "VimControl || Dock",
+    "bindings": {
+      "space l": "workspace::ToggleRightDock",
+    }
+  },
+  {
+    "context": "ProjectPanel && not_editing",
     "bindings": {
       "space e": "workspace::ToggleLeftDock",
-      "space l": "workspace::ToggleRightDock",
+      "a": "project_panel::NewFile",
     }
   },
   {
