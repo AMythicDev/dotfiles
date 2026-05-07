@@ -12,7 +12,11 @@
       "type": "registry"
     }
   },
-  "icon_theme": "Material Icon Theme",
+  "icon_theme": {
+    "mode": "dark",
+    "light": "Material Icon Theme",
+    "dark": "Material Icon Theme"
+  },
   "agent": {
     "default_model": {
       "provider": "google",
@@ -36,9 +40,9 @@
     "selections_menu": false
   },
   "theme": {
-    "mode": "system",
+    "mode": "dark",
     "light": "One Light",
-    "dark": "Tokyo Night"
+    "dark": "Tokyo Night Moon"
   },
   "git": {
     "inline_blame": {

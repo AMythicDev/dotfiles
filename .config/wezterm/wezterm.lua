@@ -18,11 +18,10 @@ config.font = wezterm.font "CaskaydiaMono Nerd Font"
 -- config.font = wezterm.font "JetBrainsMono Nerd Font"
 
 config.window_background_opacity = 0.8
-config.color_scheme_dirs = { '/home/arijit/.config/wezterm/colors/' }
-config.color_scheme = 'Rudv'
+config.color_scheme = 'tokyonight_night'
 config.hide_tab_bar_if_only_one_tab = true
 config.line_height = 1.3
-config.font_size = 11
+config.font_size = 10.5
 config.alternate_buffer_wheel_scroll_speed = 1
 config.default_cursor_style = "SteadyBar"
 config.keys = {
@@ -30,11 +29,12 @@ config.keys = {
 }
 
 config.window_padding = {
-  left = 0,
-  right = 2,
+  left = '2cell',
+  right = '2cell',
   top = 0,
   bottom = 0,
 }
+
 
 -- Wezterm's default scrolling feels quite finiky to me, so these just sets them to something
 -- which is comfortable for me

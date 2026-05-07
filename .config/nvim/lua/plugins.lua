@@ -6,6 +6,24 @@ local packages = {
     lazy = false,
     priority = 1000,
     config = function()
+      require("tokyonight").setup({
+        transparent = true, -- Enable global transparency
+        -- on_highlights = function(hl, c)
+        --   -- Restore background for bufferline groups
+        --   -- These common groups ensure the bar remains opaque
+        --   hl.BufferLineFill = { bg = c.bg_dark }
+        --   hl.BufferLineBackground = { bg = c.bg_dark }
+        --   hl.BufferLineSeparator = { fg = c.bg_dark, bg = c.bg_dark }
+        --
+        --   -- Optional: If you want active/inactive tabs to have specific backgrounds
+        --   hl.BufferLineBufferSelected = { bg = c.bg_statusline, bold = true }
+        --   hl.BufferLineBufferVisible = { bg = c.bg_dark }
+        -- end,
+        styles = {
+          sidebars = "transparent", -- e.g., nvim-tree, vista
+          floats = "transparent",   -- e.g., telescope, cmp windows
+        },
+      })
       vim.cmd [[colorscheme tokyonight-night]]
     end
   },

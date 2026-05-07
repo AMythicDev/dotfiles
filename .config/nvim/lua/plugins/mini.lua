@@ -17,3 +17,5 @@ require "mini.comment".setup({
     textobject = '<leader>/',
   },
 })
+
+require "mini.bracketed".setup({});

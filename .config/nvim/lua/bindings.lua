@@ -16,8 +16,6 @@ local mappings = {
   { "<leader>H",       wrap_cmd("set hlsearch!"),                                                         desc = "toggle hlsearch" },
   { "<leader>e",       function() require "snacks".explorer.open() end,                                   desc = "File Explorer" },
   { "<leader>w",       proxy = "<c-w>",                                                                   group = "windows" },
-  { "<leader>]",       wrap_cmd("bnext \"v:count1\""),                                                    desc = "Next buffer" },
-  { "<leader>[",       wrap_cmd("bprevious \"v:count1\""),                                                desc = "Prev buffer" },
   { "<leader>b",       group = "buffers", },
   { "<leader>bk",      function() require('snacks').bufdelete.delete() end,                               desc = "Kill" },
   { "<leader>bl",      function() require "snacks".picker.buffers() end,                                  desc = "List" },
