@@ -8,17 +8,18 @@ local packages = {
     config = function()
       require("tokyonight").setup({
         transparent = true, -- Enable global transparency
-        -- on_highlights = function(hl, c)
-        --   -- Restore background for bufferline groups
-        --   -- These common groups ensure the bar remains opaque
-        --   hl.BufferLineFill = { bg = c.bg_dark }
-        --   hl.BufferLineBackground = { bg = c.bg_dark }
-        --   hl.BufferLineSeparator = { fg = c.bg_dark, bg = c.bg_dark }
-        --
-        --   -- Optional: If you want active/inactive tabs to have specific backgrounds
-        --   hl.BufferLineBufferSelected = { bg = c.bg_statusline, bold = true }
-        --   hl.BufferLineBufferVisible = { bg = c.bg_dark }
-        -- end,
+        on_highlights = function(hl, c)
+          --   -- Restore background for bufferline groups
+          --   -- These common groups ensure the bar remains opaque
+          --   hl.BufferLineFill = { bg = c.bg_dark }
+          --   hl.BufferLineBackground = { bg = c.bg_dark }
+          --   hl.BufferLineSeparator = { fg = c.bg_dark, bg = c.bg_dark }
+          --
+          --   -- Optional: If you want active/inactive tabs to have specific backgrounds
+          --   hl.BufferLineBufferSelected = { bg = c.bg_statusline, bold = true }
+          --   hl.BufferLineBufferVisible = { bg = c.bg_dark }
+          hl.FlashLabel = { fg = "white", bold = true }
+        end,
         styles = {
           sidebars = "transparent", -- e.g., nvim-tree, vista
           floats = "transparent",   -- e.g., telescope, cmp windows
@@ -75,6 +76,7 @@ local packages = {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     config = function() require "plugins.treesitter" end,
+    branch = "main",
   },
 
   {
@@ -96,8 +98,6 @@ local packages = {
     "lewis6991/gitsigns.nvim",
     event = "BufRead",
     opts = {},
-    -- condition = false
-    enabled = false,
   },
 
   {
@@ -144,7 +144,6 @@ local packages = {
           autojump = true,
         },
       })
-      vim.api.nvim_set_hl(0, "FlashLabel", { fg = "white", bg = "bg", bold = true })
     end,
     keys = {
       { "s",     mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
@@ -284,7 +283,6 @@ local packages = {
     priority = 1000,
     lazy = false,
     opts = {
-      picker = { enabled = true },
       bufdelete = { enabled = true },
       indent = { enabled = true },
       notifier = { enabled = true },
@@ -293,10 +291,37 @@ local packages = {
         replace_netrw = true,
         git_status = true,
       },
+      words = {
+        enabled = true,
+      },
       terminal = {
         enabled = true,
       }
     },
+  },
+
+  {
+    'dmtrKovalenko/fff.nvim',
+    build = function()
+      -- downloads a prebuilt binary or falls back to cargo build
+      require("fff.download").download_or_build_binary()
+    end,
+    -- for nixos:
+    -- build = "nix run .#release",
+    opts = {
+      debug = {
+        enabled = true,
+        show_scores = true,
+        show_file_info = {
+          full_path = false,
+          timings = false,
+        }
+      },
+      layout = {
+        prompt_position = "top",
+      },
+    },
+    lazy = false, -- the plugin lazy-initialises itself
   },
 
   {

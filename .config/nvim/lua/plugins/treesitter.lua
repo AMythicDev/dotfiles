@@ -3,7 +3,7 @@ require('nvim-treesitter').setup {
   install_dir = vim.fn.stdpath('data') .. '/site'
 }
 
-require('nvim-treesitter').install { "bash", "lua", "markdown", "markdown_inline", "regex", "rust", "vim", "vimdoc" }
+require('nvim-treesitter').install { "bash", "lua", "markdown", "markdown_inline", "regex", "rust", "vim", "vimdoc", "typst", "zig", "javascript", "jsx", "typescript", "tsx" }
 
 vim.api.nvim_create_autocmd("FileType", {
   callback = function(args)

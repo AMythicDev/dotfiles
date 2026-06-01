@@ -21,7 +21,7 @@ require('lualine').setup {
     }
   },
   sections = {
-    lualine_a = { mode },
+    lualine_a = { { "reg_recording", color = { bg = "#db4b4b", fg = "#c0caf5" } }, mode },
     lualine_b = { 'branch', 'diff', 'diagnostics' },
     lualine_c = { 'filename', },
     lualine_x = { 'filetype' },

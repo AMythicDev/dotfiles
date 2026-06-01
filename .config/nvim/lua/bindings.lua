@@ -6,8 +6,8 @@ local function wrap_cmd(c)
 end
 
 local mappings = {
-  { "<leader><space>", function() require "snacks".picker.files() end,                                    desc = "Find file" },
-  { "<leader>.",       function() require "snacks".picker.grep() end,                                     desc = "Live grap" },
+  { "<leader><space>", function() require('fff').find_files() end,                                        desc = "Find file" },
+  { "<leader>.",       function() require('fff').live_grep() end,                                         desc = "Live grap" },
   { "<leader>f",       function() require "snacks".picker.lines({ layout = { preset = "default" } }) end, desc = "Find" },
   { "<leader>q",       wrap_cmd("quit"),                                                                  desc = "Quit" },
   { "<leader>Q",       wrap_cmd("quitall!"),                                                              desc = "Quit nvim" },
@@ -39,9 +39,8 @@ local mappings = {
   { "<leader>la",      wrap_cmd("Lspsaga code_action"),                                                   desc = "Show code actions" },
   { "<leader>li",      function() require "snacks".picker.lsp_implementations() end,                      desc = "Go to implementation" },
   { "<leader>lt",      functions.show_diagnostics,                                                        desc = "Show diagnostics" },
-  { "<leader>ls",      group = "symbols", },
-  { "<leader>lsd",     function() require "snacks".picker.lsp_symbols() end,                              desc = "Document symbols" },
-  { "<leader>lsw",     function() require "snacks".picker.lsp_workspace_symbols() end,                    desc = "Workspace symbols" },
+  { "<leader>ls",      function() require "snacks".picker.lsp_symbols() end,                              desc = "Document symbols" },
+  { "<leader>lw",      function() require "snacks".picker.lsp_workspace_symbols() end,                    desc = "Workspace symbols" },
   { "<leader>t",       function() require "snacks".terminal.toggle() end,                                 desc = "Toggle Terminal" },
   { "<leader>ts",      function() require "snacks".terminal.open() end,                                   desc = "Split Terminal" },
 }

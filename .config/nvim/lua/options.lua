@@ -46,13 +46,12 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 })
 
 vim.api.nvim_create_user_command("Qf",
-  "silent! bd qf | vs term://<args> | setlocal bufhidden=wipe | vertical resize 70 | keepalt file qf", {
+  "silent! bd qf | vs term://<args> | setlocal bufhidden=wipe | vertical resize 70 | keepalt file qf | wincmd p",
+  {
     desc = "Quick fire shell command",
     bar = true,
     nargs = 1,
   })
-
-vim.api.nvim_set_hl(0, "FlashLabel", { fg = "white", bold = true })
 
 -- ---@type table<number, {token:lsp.ProgressToken, msg:string, done:boolean}[]>
 -- local progress = vim.defaulttable()

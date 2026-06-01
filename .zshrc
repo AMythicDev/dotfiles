@@ -11,6 +11,9 @@ source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 autoload -Uz compinit && compinit
+
+# zinit is aliased as zi but I want it for zoxide fuzzy finder
+unalias zi
 # ========================== END OF ZINIT INSTALLER ============================
 
 # ========================== START OF PLUGINS ==================================
