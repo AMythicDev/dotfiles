@@ -1,0 +1,20 @@
+{
+  "applyBuiltinDefaults": true,
+  "version": "0.9.0-20260327",
+  "onboarding": {
+    "completed": true,
+    "completedAt": "2026-05-10T17:07:08.814Z",
+    "version": "0.9.0-20260327"
+  },
+  "features": {
+    "pathAccess": true
+  },
+  "pathAccess": {
+    "mode": "ask",
+    "allowedPaths": [
+      "~/.agents/",
+      "~/.pi/",
+      "~/.bun/install/global/node_modules/@earendil-works/"
+    ]
+  }
+}

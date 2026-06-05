@@ -1,0 +1,28 @@
+{
+  "lastChangelogVersion": "0.78.1",
+  "transport": "auto",
+  "defaultThinkingLevel": "medium",
+  "theme": "tokyo-night-dark",
+  "npmCommand": [
+    "bun"
+  ],
+  "packages": [
+    "../extensions/gemini-code-assist",
+    "git:github.com/juhas96/graphify-pi",
+    "npm:@aliou/pi-guardrails",
+    "npm:@ollama/pi-web-search",
+    "npm:@ff-labs/pi-fff",
+    "npm:pi-powerline-footer"
+  ],
+  "extensions": [
+    "extensions/default-tools.ts"
+  ],
+  "hideThinkingBlock": true,
+  "enabledModels": [
+    "gemini-3-flash-preview",
+    "gemini-3.1-pro-preview",
+    "gpt-5.4",
+    "gpt-5.4-mini"
+  ],
+  "treeFilterMode": "default"
+}
