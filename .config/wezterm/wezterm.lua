@@ -2,16 +2,6 @@ local wezterm = require "wezterm"
 local action = wezterm.action
 local mux = wezterm.mux
 
-wezterm.on('gui-attached', function(_)
-  local workspace = mux.get_active_workspace()
-  for _, window in ipairs(mux.all_windows()) do
-    wezterm.log_info(window)
-    if window:get_workspace() == workspace then
-      window:gui_window():maximize()
-    end
-  end
-end)
-
 local config = wezterm.config_builder()
 
 config.font = wezterm.font "CaskaydiaMono Nerd Font"
@@ -35,6 +25,7 @@ config.window_padding = {
   bottom = 0,
 }
 
+window_decorations = "RESIZE"
 
 -- Wezterm's default scrolling feels quite finiky to me, so these just sets them to something
 -- which is comfortable for me

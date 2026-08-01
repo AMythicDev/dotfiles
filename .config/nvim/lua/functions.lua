@@ -9,10 +9,4 @@ function M.show_diagnostics()
   vim.api.nvim_set_current_win(current_win)
 end
 
-function M.harpoon_menu()
-  local harpoon = require "harpoon"
-
-  harpoon.ui:toggle_quick_menu(harpoon:list())
-end
-
 return M

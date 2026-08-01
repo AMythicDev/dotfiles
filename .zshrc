@@ -87,3 +87,7 @@ alias ll=eza -la
 source "$HOME/.zshenv"
 # ================= END OF ADDITIONAL CONFIGURATIONS ==========================
 
+
+
+# Added by Antigravity CLI installer
+# export PATH="/home/arijit/.local/bin:$PATH"

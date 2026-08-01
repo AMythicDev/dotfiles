@@ -14,8 +14,6 @@
       "space l d": "editor::GoToDefinition",
       "space l r": "editor::Rename",
       "space space": "file_finder::Toggle",
-      "space ]": "pane::ActivateNextItem",
-      "space [": "pane::ActivatePreviousItem",
       "space /": "vim::ToggleComments",
       "space t": "workspace::ToggleBottomDock",
       "space q": "pane::CloseActiveItem",

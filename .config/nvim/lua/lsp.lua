@@ -30,6 +30,7 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     end
   end,
 })
+vim.lsp.inlay_hint.enable(true)
 
 local vtls_path = vim.fn.expand '$MASON/packages' .. '/vue-language-server' .. '/node_modules/@vue/language-server'
 local vue_plugin = {

@@ -16,7 +16,13 @@ vim.g.zig_fmt_autosave = 0
 vim.o.splitright = true
 vim.o.splitbelow = false
 vim.o.conceallevel = 2
+vim.o.ignorecase = true
 vim.o.smartcase = true
+vim.o.exrc = true
+
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
+vim.opt.foldenable = true
 
 vim.diagnostic.config({ signs = false })
 
@@ -51,6 +57,7 @@ vim.api.nvim_create_user_command("Qf",
     desc = "Quick fire shell command",
     bar = true,
     nargs = 1,
+    complete = "shellcmd"
   })
 
 -- ---@type table<number, {token:lsp.ProgressToken, msg:string, done:boolean}[]>

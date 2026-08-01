@@ -40,3 +40,7 @@ if status is-interactive
     set -x GPG_TTY (tty)
     source ("env" starship init fish --print-full-init | psub)
 end
+
+
+# Added by Antigravity CLI installer
+set -gx PATH "/home/arijit/.local/bin" $PATH

@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "0.78.1",
+  "lastChangelogVersion": "0.81.1",
   "transport": "auto",
   "defaultThinkingLevel": "medium",
   "theme": "tokyo-night-dark",
@@ -24,5 +24,7 @@
     "gpt-5.4",
     "gpt-5.4-mini"
   ],
-  "treeFilterMode": "default"
+  "treeFilterMode": "default",
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-5.4"
 }
