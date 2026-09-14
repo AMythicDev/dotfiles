@@ -1,0 +1,25 @@
+{
+  "name": "custom-asm-snippets",
+  "publisher": "custom",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.11.0"
+  },
+  "contributes": {
+    "snippets": [
+      {
+        "language": [
+          "asm",
+          "s"
+        ],
+        "path": "./snippets/asm.json"
+      },
+      {
+        "language": [
+          "markdown"
+        ],
+        "path": "./snippets/markdown.json"
+      }
+    ]
+  }
+}

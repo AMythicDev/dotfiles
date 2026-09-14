@@ -24,9 +24,7 @@
     "dock": "left"
   },
   "agent_servers": {
-    "opencode": {
-      "type": "registry"
-    }
+    
   },
   "icon_theme": {
     "mode": "dark",

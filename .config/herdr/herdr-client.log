@@ -1,0 +1,32 @@
+2026-08-23T12:09:04.448561Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=10509
+2026-08-23T12:09:04.448638Z  INFO herdr::client: connecting to server path=/home/arijit/.config/herdr/herdr-client.sock
+2026-08-23T12:09:04.602457Z  INFO herdr::client: handshake succeeded version=20 encoding=SemanticFrame
+2026-08-23T12:34:14.733412Z  INFO herdr::logging: herdr exiting event="app.shutdown" subsystem="client" outcome="completed" pid=10509
+2026-09-14T05:56:30.643833Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=42523
+2026-09-14T05:56:30.643894Z  INFO herdr::client: connecting to server path=/home/arijit/.config/herdr/herdr-client.sock
+2026-09-14T05:56:30.848250Z  INFO herdr::client::handshake: endpoint handshake succeeded generation=1 server_version=0.9.0
+2026-09-14T06:00:25.792799Z  INFO herdr::logging: herdr exiting event="app.shutdown" subsystem="client" outcome="completed" pid=42523
+2026-09-14T06:02:51.883100Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=44179
+2026-09-14T06:02:51.883152Z  INFO herdr::client: connecting to server path=/home/arijit/.config/herdr/herdr-client.sock
+2026-09-14T06:02:51.887563Z  INFO herdr::client::handshake: endpoint handshake succeeded generation=1 server_version=0.9.0
+2026-09-14T06:03:58.169141Z  INFO herdr::logging: herdr exiting event="app.shutdown" subsystem="client" outcome="completed" pid=44179
+2026-09-14T06:04:00.104380Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=44709
+2026-09-14T06:04:00.104444Z  INFO herdr::client: connecting to server path=/home/arijit/.config/herdr/herdr-client.sock
+2026-09-14T06:04:00.180761Z  INFO herdr::client::handshake: endpoint handshake succeeded generation=1 server_version=0.9.0
+2026-09-14T06:28:42.973320Z  INFO herdr::logging: herdr exiting event="app.shutdown" subsystem="client" outcome="completed" pid=44709
+2026-09-14T06:28:44.467771Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=53482
+2026-09-14T06:28:44.467827Z  INFO herdr::client: connecting to server path=/home/arijit/.config/herdr/herdr-client.sock
+2026-09-14T06:28:44.481894Z  INFO herdr::client::handshake: endpoint handshake succeeded generation=1 server_version=0.9.0
+2026-09-14T06:30:57.975371Z  INFO herdr::client: client terminal unavailable; detaching err=I/O error (os error 5)
+2026-09-14T06:30:57.978610Z  INFO herdr::logging: herdr exiting event="app.shutdown" subsystem="client" outcome="completed" pid=53482
+2026-09-14T16:51:07.635348Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=5537
+2026-09-14T16:51:07.639088Z  INFO herdr::client: connecting to server path=/home/arijit/.config/herdr/herdr-client.sock
+2026-09-14T16:51:07.647969Z  INFO herdr::client::handshake: endpoint handshake succeeded generation=1 server_version=0.9.0
+2026-09-14T17:01:10.202885Z  INFO herdr::logging: herdr exiting event="app.shutdown" subsystem="client" outcome="completed" pid=5537
+2026-09-14T22:47:44.609827Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=6360
+2026-09-14T22:47:44.612756Z  INFO herdr::client: connecting to server path=/home/arijit/.config/herdr/herdr-client.sock
+2026-09-14T22:47:44.616919Z  INFO herdr::client::handshake: endpoint handshake succeeded generation=1 server_version=0.9.0
+2026-09-14T23:46:15.364608Z  INFO herdr::logging: herdr exiting event="app.shutdown" subsystem="client" outcome="completed" pid=6360
+2026-09-14T23:46:16.525109Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=22413
+2026-09-14T23:46:16.525157Z  INFO herdr::client: connecting to server path=/home/arijit/.config/herdr/herdr-client.sock
+2026-09-14T23:46:16.620808Z  INFO herdr::client::handshake: endpoint handshake succeeded generation=1 server_version=0.9.0

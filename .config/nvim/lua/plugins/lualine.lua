@@ -44,5 +44,5 @@ return {
     inactive_winbar = {},
     extensions = {}
   },
-  event = "VeryLazy",
+  event = "UIEnter",
 }

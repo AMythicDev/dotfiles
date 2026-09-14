@@ -15,9 +15,8 @@ local mappings = {
   { "<leader>s",       wrap_cmd("write"),                                                                 desc = "save" },
   { "<leader>H",       wrap_cmd("set hlsearch!"),                                                         desc = "toggle hlsearch" },
   { "<leader>e",       function() require "snacks".explorer.open() end,                                   desc = "File Explorer" },
-  { "<leader>w",       proxy = "<c-w>",                                                                   group = "windows" },
-  { "<leader>k",       function() require('snacks').bufdelete.delete() end,                               desc = "Kill" },
-  { "<leader>i",       function() require "snacks".picker.buffers() end,                                  desc = "List" },
+  { "<leader>k",       function() require('snacks').bufdelete.delete() end,                               desc = "Kill buffer" },
+  { "<leader>i",       function() require "snacks".picker.buffers() end,                                  desc = "List buffer" },
   { "<leader>l",       group = "lsp", },
   { "<leader>la",      vim.lsp.buf.code_action,                                                           desc = "Code Actions" },
   { "<leader>ld",      function() require "snacks".picker.lsp_definitions() end,                          desc = "Go to definition" },
@@ -35,34 +34,19 @@ local mappings = {
 }
 
 vim.keymap.set("n", "K", wrap_cmd("Lspsaga hover_doc"), { noremap = true, silent = true, desc = "Hover Symbol" })
+
 vim.keymap.set({ "n", "v", "i" }, "<up>", "<Nop>", {})
 vim.keymap.set({ "n", "v", "i" }, "<down>", "<Nop>", {})
 vim.keymap.set({ "n", "v", "i" }, "<right>", "<Nop>", {})
 vim.keymap.set({ "n", "v", "i" }, "<left>", "<Nop>", {})
 
-vim.keymap.set("n", "<leader>]", vim.cmd("bnext " .. vim.v.count1),
-  { silent = true, noremap = true, desc = "Next buffer" })
-vim.keymap.set("n", "<leader>[", vim.cmd("bprevious " .. vim.v.count1),
-  { silent = true, noremap = true, desc = "Prev buffer" })
+vim.keymap.set({ "i", "s" }, "<C-n>", function() require "luasnip".jump(1) end, { silent = true })
+vim.keymap.set({ "i", "s" }, "<C-s-m>", function() require "luasnip".jump(-1) end, { silent = true })
 
 vim.keymap.set("i", "<c-h>", "<left>", { noremap = true })
 vim.keymap.set("i", "<c-j>", "<down>", { noremap = true })
 vim.keymap.set("i", "<c-k>", "<up>", { noremap = true })
 vim.keymap.set("i", "<c-l>", "<right>", { noremap = true })
-
-vim.api.nvim_set_keymap("n", "<c-h>", wrap_cmd("wincmd h"), { noremap = true, silent = true, desc = "Focus left window" })
-
-vim.api.nvim_set_keymap("n", "<c-j>", wrap_cmd("wincmd j"),
-  { noremap = true, silent = true, desc = "Focus bottom window" })
-vim.api.nvim_set_keymap("n", "<c-k>", wrap_cmd("wincmd k"), { noremap = true, silent = true, desc = "Focus up window" })
-vim.api.nvim_set_keymap("n", "<c-l>", wrap_cmd("wincmd l"),
-  { noremap = true, silent = true, desc = "Focus right window" })
-vim.api.nvim_set_keymap("n", "<c-right>", wrap_cmd("wincmd >"),
-  { noremap = true, silent = true, desc = "Increase width" })
-vim.api.nvim_set_keymap("n", "<c-left>", wrap_cmd("wincmd <"), { noremap = true, silent = true, desc = "Decrease width" })
-vim.api.nvim_set_keymap("n", "<c-up>", wrap_cmd("wincmd +"), { noremap = true, silent = true, desc = "Increase height" })
-vim.api.nvim_set_keymap("n", "<c-down>", wrap_cmd("wincmd -"),
-  { noremap = true, silent = true, desc = "Decrease height" })
 
 vim.api.nvim_set_keymap("n", "X", "\"_d", { noremap = true, silent = true, desc = "Delete" })
 
@@ -70,5 +54,9 @@ vim.api.nvim_set_keymap("n", "<c-h>", "^", { noremap = true, silent = true, desc
 vim.api.nvim_set_keymap("n", "<c-l>", "$", { noremap = true, silent = true, desc = "Go to end" })
 
 vim.keymap.set("v", "<leader>la", vim.lsp.buf.code_action, { desc = "Code Actions" })
+
+-- I don't use tabs for snippet jumping
+pcall(vim.keymap.del, { "i", "s" }, "<Tab>")
+pcall(vim.keymap.del, { "i", "s" }, "<S-Tab>")
 
 wk.add(mappings)

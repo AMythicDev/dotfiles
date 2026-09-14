@@ -1,5 +1,5 @@
 {
-  "lastChangelogVersion": "0.81.1",
+  "lastChangelogVersion": "0.85.1",
   "transport": "auto",
   "defaultThinkingLevel": "medium",
   "theme": "tokyo-night-dark",
@@ -7,24 +7,29 @@
     "bun"
   ],
   "packages": [
-    "../extensions/gemini-code-assist",
     "git:github.com/juhas96/graphify-pi",
     "npm:@aliou/pi-guardrails",
     "npm:@ollama/pi-web-search",
     "npm:@ff-labs/pi-fff",
-    "npm:pi-powerline-footer"
+    "npm:pi-powerline-footer",
+    "npm:pi-9router-ext"
   ],
   "extensions": [
     "extensions/default-tools.ts"
   ],
   "hideThinkingBlock": true,
   "enabledModels": [
-    "gemini-3-flash-preview",
-    "gemini-3.1-pro-preview",
-    "gpt-5.4",
-    "gpt-5.4-mini"
+    "openai-codex/gpt-5.6-terra",
+    "openai-codex/gpt-5.6-sol",
+    "nvidia/moonshotai/kimi-k3"
   ],
   "treeFilterMode": "default",
   "defaultProvider": "openai-codex",
-  "defaultModel": "gpt-5.4"
+  "defaultModel": "gpt-5.6-terra",
+  "showLastPrompt": true,
+  "powerline": {
+    "preset": "default",
+    "placement": "below",
+    "welcome": true
+  }
 }

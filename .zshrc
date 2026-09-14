@@ -28,7 +28,7 @@ zinit snippet OMZP::sudo
 zinit snippet OMZP::archlinux
 zinit snippet OMZP::command-not-found
 zinit snippet OMZP::bun
-zinit snippet OMZP::docker
+zinit snippet OMZP::podman
 zinit snippet OMZP::docker-compose
 zinit snippet OMZP::eza
 zinit snippet OMZP::podman

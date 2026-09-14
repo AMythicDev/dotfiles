@@ -1,0 +1,10 @@
+{
+  "insert code block": {
+    "prefix": "cb",
+    "body": [
+      "```${1: language}",
+      "${2}",
+      "```"
+    ]
+  }
+}

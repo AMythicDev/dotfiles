@@ -2,11 +2,6 @@ return {
   { "folke/lazy.nvim" },
 
   {
-    "rafamadriz/friendly-snippets",
-    event = { "InsertEnter" },
-  },
-
-  {
     "folke/lazydev.nvim",
     ft = "lua",
     opts = {},
@@ -25,6 +20,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     event = "BufReadPre",
+    version = "*",
   },
 
   {
@@ -51,12 +47,6 @@ return {
   },
 
   {
-    'windwp/nvim-autopairs',
-    event = "InsertEnter",
-    opts = {} -- this is equalent to setup({}) function
-  },
-
-  {
     "folke/trouble.nvim",
     event = "LspAttach",
     opts = true
@@ -70,7 +60,7 @@ return {
 
   {
     'akinsho/bufferline.nvim',
-    dependencies = 'nvim-tree/nvim-web-devicons',
+    -- dependencies = 'nvim-tree/nvim-web-devicons',
     config = true,
     event = "VeryLazy"
   },
@@ -125,33 +115,12 @@ return {
   },
 
   {
-    "folke/snacks.nvim",
-    priority = 1000,
-    lazy = false,
-    opts = {
-      bufdelete = { enabled = true },
-      indent = { enabled = true },
-      notifier = { enabled = true },
-      explorer = {
-        enabled = true,
-        replace_netrw = true,
-        git_status = true,
-      },
-      words = {
-        enabled = true,
-      },
-      terminal = {
-        enabled = true,
-      }
-    },
-  },
-
-  {
     'dmtrKovalenko/fff.nvim',
     build = function()
       -- downloads a prebuilt binary or falls back to cargo build
       require("fff.download").download_or_build_binary()
     end,
+    version = "*",
     opts = {
       debug = {
         enabled = true,
@@ -168,53 +137,25 @@ return {
     lazy = false, -- the plugin lazy-initialises itself
   },
 
-  {
-    "folke/noice.nvim",
-    keys = { ":", "/", "?" },
-    opts = {
-      cmdline = {
-        enabled = true,
-        opts = {
-          position = { row = "10%", col = "50%" }
-        }
-      }
-    },
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-    },
-    event = "VeryLazy",
-  },
+  -- {
+  --   "folke/noice.nvim",
+  --   keys = { ":", "/", "?" },
+  --   opts = {
+  --     cmdline = {
+  --       enabled = true,
+  --       opts = {
+  --         position = { row = "10%", col = "50%" }
+  --       }
+  --     }
+  --   },
+  --   dependencies = {
+  --     "MunifTanjim/nui.nvim",
+  --   },
+  --   event = "VeryLazy",
+  -- },
 
   {
     'MeanderingProgrammer/render-markdown.nvim',
     dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.nvim' },
-  },
-
-  {
-    "obsidian-nvim/obsidian.nvim",
-    version = "*",             -- use latest release, remove to use latest commit
-    opts = {
-      legacy_commands = false, -- this will be removed in 4.0.0
-      picker = {
-        name = "snacks.picker",
-      },
-      frontmatter = { enabled = false },
-      completion = {
-        lsp = true,
-      },
-      unique_note = {
-        format = "YYYY-MM-DD HHmm",
-        template = "Note.md",
-      },
-      templates = {
-        folder = "Templates/"
-      },
-      workspaces = {
-        {
-          name = "The Brain",
-          path = "~/The Brain/",
-        },
-      },
-    },
   },
 }

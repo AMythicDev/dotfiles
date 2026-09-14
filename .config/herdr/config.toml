@@ -1,0 +1,12 @@
+onboarding = false
+
+[theme]
+name = "tokyo-night"
+auto_switch = false
+
+[ui]
+tab_bar_position = "bottom"
+
+[keys]
+navigate_workspace_up = ["up", "shift+k"]
+navigate_workspace_down = ["down", "shift+j"]

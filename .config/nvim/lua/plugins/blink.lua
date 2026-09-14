@@ -32,7 +32,7 @@ return {
     -- elsewhere in your config, without redefining it, due to `opts_extend`
     sources = {
       default = { "lazydev", 'lsp', 'path', 'snippets', 'buffer', 'cmdline' },
-      per_filetype = { markdown = { "lsp" } },
+      per_filetype = { markdown = { "lsp", "snippets" } },
       providers = {
         lazydev = {
           name = "LazyDev",
@@ -49,6 +49,8 @@ return {
         }
       },
     },
+
+    snippets = { preset = "luasnip" },
 
     cmdline = {
       keymap = {

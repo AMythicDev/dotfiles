@@ -1,0 +1,34 @@
+{
+  "avr-main": {
+    "prefix": "avr-main",
+    "body": [
+      ".INCLUDE \"m32def.inc\"",
+      "",
+      ".ORG 0x0000",
+      "    LDI R16, HIGH(RAMEND)",
+      "    OUT SPH, R16",
+      "    LDI R16, LOW(RAMEND)",
+      "    OUT SPL, R16",
+      "    ${1:; Additional setup code...}",
+      "    RJMP MAIN",
+      "",
+      "MAIN:",
+      "    ${2:; main code...}",
+      "    RJMP MAIN",
+      "",
+      "Delay:",
+      "    DI R17, 0xFF",
+      "    L1: LDI R18, 0xFF",
+      "    L2: LDI R19, 0x04",
+      "    L3: NOP",
+      "    DEC R19",
+      "    BRNE L3",
+      "    DEC R18",
+      "    BRNE L2",
+      "    DEC R17",
+      "    BRNE L1",
+      "    RET"
+    ],
+    "description": "AVR main template"
+  }
+}
