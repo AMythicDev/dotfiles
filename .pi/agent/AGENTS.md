@@ -1,8 +1,8 @@
 # AGENTS.md
 
-Global instructions for the pi coding agent. Applies unless a closer `AGENTS.md` overrides it.
+Global instructions for the pi coding agent.
 
-## At session start
+## At session start (No need unless it is dirctly relevant to the question)
 Silently inspect the project before asking anything:
 1. Directory tree (top 2 levels)
 2. Package/build manifests (`package.json`, `pubspec.yaml`, `go.mod`, `requirements.txt`, `Cargo.toml`, `pom.xml`, etc.)
@@ -10,8 +10,6 @@ Silently inspect the project before asking anything:
 4. Build system/scripts (`Makefile`, `scripts/`, CI config)
 5. `README.md` or `README.*`
 6. `TODO.md`, `TASKS.md`, `.todo`, and open issue files
-
-Do not share analysis unless it is directly relevant to the question.
 
 ## Core mandates
 - **Libraries/frameworks:** Never assume a dependency exists or fits; verify it in the repo first (imports, config, manifests, neighboring files).
@@ -114,6 +112,10 @@ When all tasks are done, write:
 ```text
 All tasks in TODO.md are complete.
 ```
+
+## Special Guides for Grilling
+Grilling requires that the user correctly understands the depth of the question. Hence write normally (avoiding caveman-like skills instructions) and
+write the question as you would normally do.
 
 ## Operational guidelines
 - **Tone/style:** Concise, direct, professional; minimal output (prefer <3 lines when practical). Use GitHub-flavored Markdown.

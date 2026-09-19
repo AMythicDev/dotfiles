@@ -40,8 +40,8 @@ vim.keymap.set({ "n", "v", "i" }, "<down>", "<Nop>", {})
 vim.keymap.set({ "n", "v", "i" }, "<right>", "<Nop>", {})
 vim.keymap.set({ "n", "v", "i" }, "<left>", "<Nop>", {})
 
-vim.keymap.set({ "i", "s" }, "<C-n>", function() require "luasnip".jump(1) end, { silent = true })
-vim.keymap.set({ "i", "s" }, "<C-s-m>", function() require "luasnip".jump(-1) end, { silent = true })
+vim.keymap.set({ "i", "s" }, "<C-n>", function() vim.snippet.jump(1) end, { silent = true })
+vim.keymap.set({ "i", "s" }, "<C-s-m>", function() vim.snippet.jump(-1) end, { silent = true })
 
 vim.keymap.set("i", "<c-h>", "<left>", { noremap = true })
 vim.keymap.set("i", "<c-j>", "<down>", { noremap = true })
@@ -54,9 +54,5 @@ vim.api.nvim_set_keymap("n", "<c-h>", "^", { noremap = true, silent = true, desc
 vim.api.nvim_set_keymap("n", "<c-l>", "$", { noremap = true, silent = true, desc = "Go to end" })
 
 vim.keymap.set("v", "<leader>la", vim.lsp.buf.code_action, { desc = "Code Actions" })
-
--- I don't use tabs for snippet jumping
-pcall(vim.keymap.del, { "i", "s" }, "<Tab>")
-pcall(vim.keymap.del, { "i", "s" }, "<S-Tab>")
 
 wk.add(mappings)

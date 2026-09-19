@@ -9,27 +9,28 @@
   "packages": [
     "git:github.com/juhas96/graphify-pi",
     "npm:@aliou/pi-guardrails",
-    "npm:@ollama/pi-web-search",
     "npm:@ff-labs/pi-fff",
     "npm:pi-powerline-footer",
-    "npm:pi-9router-ext"
+    "npm:pi-web-access",
+    "npm:@juicesharp/rpiv-ask-user-question"
   ],
   "extensions": [
     "extensions/default-tools.ts"
   ],
   "hideThinkingBlock": true,
   "enabledModels": [
-    "openai-codex/gpt-5.6-terra",
+    "nvidia/z-ai/glm-5.3-flash",
     "openai-codex/gpt-5.6-sol",
     "nvidia/moonshotai/kimi-k3"
   ],
   "treeFilterMode": "default",
-  "defaultProvider": "openai-codex",
-  "defaultModel": "gpt-5.6-terra",
   "showLastPrompt": true,
   "powerline": {
     "preset": "default",
     "placement": "below",
-    "welcome": true
-  }
+    "welcome": false
+  },
+  "workingVibeModel": "openai-codex/gpt-5.6-luna",
+  "workingVibe": "cosmic",
+  "workingVibeMode": "file"
 }

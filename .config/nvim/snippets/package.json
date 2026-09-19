@@ -12,13 +12,19 @@
           "asm",
           "s"
         ],
-        "path": "./snippets/asm.json"
+        "path": "./asm.json"
       },
       {
         "language": [
           "markdown"
         ],
-        "path": "./snippets/markdown.json"
+        "path": "./markdown.json"
+      },
+      {
+        "language": [
+          "typst"
+        ],
+        "path": "./typst.json"
       }
     ]
   }

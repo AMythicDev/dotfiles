@@ -3,9 +3,7 @@ return {
   version = "*",
   event = { "InsertEnter", "CmdlineEnter" },
   key = { "/", "?" },
-  dependencies = { "nvim-web-devicons", "lspkind.nvim",
-    { 'L3MON4D3/LuaSnip', version = 'v2.*' },
-  },
+  dependencies = { "nvim-web-devicons", "lspkind.nvim", "rafamadriz/friendly-snippets" },
 
   opts = {
     -- 'default' for mappings similar to built-in completion
@@ -15,7 +13,9 @@ return {
     keymap = {
       -- set to 'none' to disable the 'default' preset
       preset = 'default',
-      ["<CR>"] = { "accept", "fallback" }
+      ["<CR>"] = { "accept", "fallback" },
+      ["<Tab>"] = false,
+      ["<S-Tab>"] = false,
     },
 
     appearance = {
@@ -50,7 +50,7 @@ return {
       },
     },
 
-    snippets = { preset = "luasnip" },
+    snippets = { friendly_snippets = true },
 
     cmdline = {
       keymap = {

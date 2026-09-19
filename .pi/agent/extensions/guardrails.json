@@ -1,5 +1,5 @@
 {
-  "$schema": "https://unpkg.com/@aliou/pi-guardrails@0.17.0/schema.json",
+  "$schema": "https://unpkg.com/@aliou/pi-guardrails@0.17.1/schema.json",
   "applyBuiltinDefaults": true,
   "version": "0.16.2",
   "onboarding": {
@@ -16,6 +16,14 @@
       {
         "kind": "file",
         "path": "/dev/null"
+      },
+      {
+        "kind": "directory",
+        "path": "~/.agents/"
+      },
+      {
+        "kind": "directory",
+        "path": "~/.pi/agent/"
       }
     ]
   }
